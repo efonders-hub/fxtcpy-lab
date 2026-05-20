@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- v2 -->
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>7-Point VSL Leak Checklist — FixThatCopy.com</title>
+  <meta name="description" content="Find the hidden leak bleeding your VSL dry. The free 7-Point VSL Leak Checklist from Zaah Fonderson, VSL Lead Diagnostician.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Barlow+Condensed:wght@500;600;700&family=DM+Sans:opsz,wght@9..40,400;9..40,500&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    :root {
+      --bg-base:        #0D1F35;
+      --bg-deep:        #081628;
+      --bg-surface:     #0F2A45;
+      --bg-card:        #1A3855;
+      --bg-elevated:    #1E4268;
+      --text-primary:   #FFFFFF;
+      --text-secondary: rgba(255,255,255,0.78);
+      --text-tertiary:  rgba(255,255,255,0.50);
+      --text-ghost:     rgba(255,255,255,0.32);
+      --orange:         #E8650A;
+      --orange-hover:   #CC5500;
+      --orange-glow:    rgba(232,101,10,0.22);
+      --orange-dim:     rgba(232,101,10,0.10);
+      --orange-border:  rgba(232,101,10,0.38);
+      --alert:          #E8192C;
+      --alert-dim:      rgba(232,25,44,0.10);
+      --border:         rgba(255,255,255,0.08);
+      --border-mid:     rgba(255,255,255,0.14);
+      --font-display:   'Archivo Black', Arial Black, sans-serif;
+      --font-label:     'Barlow Condensed', Arial Narrow, sans-serif;
+      --font-body:      'DM Sans', Helvetica Neue, Arial, sans-serif;
+      --font-mono:      'JetBrains Mono', 'Courier New', monospace;
+    }
+
+    body {
+      background: var(--bg-base);
+      color: var(--text-secondary);
+      font-family: var(--font-body);
+      font-size: 17px;
+      line-height: 1.72;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img { display: block; max-width: 100%; }
+    a { color: var(--orange); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    p { margin-bottom: 1.15em; }
+    p:last-child { margin-bottom: 0; }
+    strong { color: var(--text-primary); font-weight: 500; }
+
+    .container      { max-width: 760px;  margin: 0 auto; padding: 0 28px; }
+    .container--wide { max-width: 1080px; margin: 0 auto; padding: 0 32px; }
+    .container--mid  { max-width: 900px;  margin: 0 auto; padding: 0 28px; }
+
+    h1 {
+      font-family: var(--font-display);
+      font-size: clamp(30px, 4.5vw, 54px);
+      color: var(--text-primary);
+      line-height: 1.06;
+      letter-spacing: -0.3px;
+    }
+    h2 {
+      font-family: var(--font-display);
+      font-size: clamp(22px, 3vw, 36px);
+      color: var(--text-primary);
+      line-height: 1.12;
+      margin-bottom: 28px;
+    }
+
+    .kicker {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--orange);
+      display: block;
+      margin-bottom: 18px;
+    }
+    .kicker--alert { color: var(--alert); }
+    .kicker--ghost { color: var(--text-ghost); }
+    .kicker--center { text-align: center; }
+
+    /* ── BUTTONS ── */
+    .btn {
+      display: inline-block;
+      font-family: var(--font-label);
+      font-weight: 700;
+      font-size: 16px;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      padding: 18px 44px;
+      border-radius: 3px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.15s, box-shadow 0.15s;
+      white-space: nowrap;
+    }
+    .btn--orange {
+      background: var(--orange);
+      color: #fff;
+      box-shadow: 0 4px 28px var(--orange-glow);
+    }
+    .btn--orange:hover { background: var(--orange-hover); text-decoration: none; box-shadow: 0 6px 36px var(--orange-glow); }
+    .btn--block { display: block; width: 100%; text-align: center; }
+    .btn--xl { padding: 22px 60px; font-size: 18px; }
+
+    /* ── FORM INPUTS ── */
+    .form-field { margin-bottom: 12px; }
+    .form-input {
+      width: 100%;
+      background: var(--bg-deep);
+      border: 1px solid var(--border-mid);
+      border-radius: 3px;
+      padding: 14px 18px;
+      font-family: var(--font-body);
+      font-size: 15px;
+      color: var(--text-primary);
+      outline: none;
+      transition: border-color 0.15s;
+      -webkit-appearance: none;
+    }
+    .form-input::placeholder { color: var(--text-ghost); }
+    .form-input:focus { border-color: var(--orange-border); }
+    .form-disclaimer {
+      font-size: 12px;
+      color: var(--text-ghost);
+      text-align: center;
+      margin-top: 14px;
+      line-height: 1.5;
+    }
+
+    /* ── NAV ── */
+    .site-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(8,22,40,0.94);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 32px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-ghost);
+    }
+    .nav-logo span { color: var(--orange); }
+    .nav-label {
+      font-family: var(--font-label);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-ghost);
+    }
+
+    /* ── HERO ── */
+    #hero {
+      background: var(--bg-deep);
+      padding: 80px 0 76px;
+      border-bottom: 1px solid var(--border);
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 300px;
+      gap: 64px;
+      align-items: center;
+    }
+    #hero h1 { margin-bottom: 16px; }
+    .hero-subhead {
+      font-size: 20px;
+      color: var(--text-secondary);
+      line-height: 1.55;
+      margin-bottom: 40px;
+    }
+
+    /* Capture form box */
+    .capture-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border-mid);
+      border-top: 3px solid var(--orange);
+      border-radius: 4px;
+      padding: 36px 30px 32px;
+    }
+    .capture-box-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-ghost);
+      display: block;
+      margin-bottom: 22px;
+    }
+
+    /* Book cover */
+    .book-cover {
+      background: var(--bg-card);
+      border: 1px solid var(--border-mid);
+      border-left: 5px solid var(--orange);
+      border-radius: 2px 4px 4px 2px;
+      padding: 30px 26px 32px;
+      box-shadow: 10px 14px 48px rgba(0,0,0,0.50), -1px -1px 0 rgba(255,255,255,0.04);
+      position: relative;
+    }
+    .book-cover::before {
+      content: '';
+      position: absolute;
+      top: 8px;
+      left: -3px;
+      width: 3px;
+      height: calc(100% - 16px);
+      background: var(--orange-hover);
+      border-radius: 0 2px 2px 0;
+    }
+    .book-label {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-ghost);
+      display: block;
+      margin-bottom: 18px;
+    }
+    .book-title {
+      font-family: var(--font-display);
+      font-size: 18px;
+      color: var(--text-primary);
+      line-height: 1.2;
+      margin-bottom: 4px;
+    }
+    .book-subtitle {
+      font-family: var(--font-label);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 20px;
+    }
+    .book-divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 16px 0;
+    }
+    .book-leak-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 9px;
+      margin-bottom: 8px;
+    }
+    .book-leak-num {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      color: var(--orange);
+      flex-shrink: 0;
+      width: 16px;
+      padding-top: 2px;
+      opacity: 0.7;
+    }
+    .book-leak-name {
+      font-size: 12px;
+      color: var(--text-tertiary);
+      line-height: 1.35;
+    }
+    .book-author {
+      margin-top: 20px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: var(--text-ghost);
+    }
+    .book-author span { color: var(--text-tertiary); }
+
+    /* ── BODY COPY SECTION ── */
+    .copy-section {
+      padding: 76px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .copy-section--base    { background: var(--bg-base); }
+    .copy-section--surface { background: var(--bg-surface); }
+    .copy-section--deep    { background: var(--bg-deep); }
+
+    .copy-section p {
+      font-size: 17px;
+      line-height: 1.80;
+      color: var(--text-secondary);
+      margin-bottom: 18px;
+    }
+    .copy-section p:last-child { margin-bottom: 0; }
+
+    /* ── 7 LEAKS GRID ── */
+    #leaks {
+      background: var(--bg-surface);
+      padding: 84px 0 80px;
+      border-bottom: 1px solid var(--border);
+    }
+    .leaks-intro {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+    .leaks-intro h2 { margin-bottom: 0; }
+
+    .leaks-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2px;
+    }
+    .leak-item {
+      background: var(--bg-card);
+      padding: 32px 28px;
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      transition: background 0.15s;
+    }
+    .leak-item:hover { background: var(--bg-elevated); }
+    .leak-item--solo {
+      grid-column: 1 / -1;
+      max-width: calc(50% - 1px);
+    }
+    .leak-n {
+      font-family: var(--font-display);
+      font-size: 44px;
+      color: var(--orange);
+      opacity: 0.25;
+      line-height: 1;
+      flex-shrink: 0;
+      width: 46px;
+    }
+    .leak-content {}
+    .leak-tag {
+      font-family: var(--font-label);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 6px;
+    }
+    .leak-name {
+      font-family: var(--font-display);
+      font-size: 16px;
+      color: var(--text-primary);
+      line-height: 1.2;
+      margin-bottom: 10px;
+    }
+    .leak-desc {
+      font-size: 14px;
+      line-height: 1.68;
+      color: var(--text-tertiary);
+    }
+
+    /* ── CLOSING ── */
+    #closing {
+      background: var(--bg-base);
+      padding: 84px 0 80px;
+      border-bottom: 1px solid var(--border);
+      text-align: center;
+    }
+    #closing p {
+      font-size: 18px;
+      line-height: 1.78;
+      color: var(--text-secondary);
+      max-width: 620px;
+      margin: 0 auto 20px;
+    }
+    .closing-form {
+      max-width: 420px;
+      margin: 44px auto 0;
+      text-align: left;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--bg-deep);
+      border-top: 1px solid var(--border);
+      padding: 32px 28px;
+      text-align: center;
+    }
+    .footer-links {
+      font-size: 13px;
+      color: var(--text-ghost);
+    }
+    .footer-links a {
+      color: var(--text-tertiary);
+    }
+    .footer-links a:hover { color: var(--text-secondary); }
+    .footer-sep { margin: 0 10px; color: var(--border-mid); }
+    .footer-id {
+      margin-top: 14px;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: var(--text-ghost);
+    }
+    .footer-id span { color: var(--orange); }
+    .footer-copy {
+      margin-top: 8px;
+      font-size: 12px;
+      color: var(--text-ghost);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 800px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      .book-cover { display: none; }
+      .leaks-grid { grid-template-columns: 1fr; }
+      .leak-item--solo { max-width: 100%; }
+      .site-nav { padding: 0 20px; }
+      #hero { padding: 52px 0 56px; }
+      .copy-section { padding: 56px 0; }
+      #leaks { padding: 60px 0 56px; }
+      #closing { padding: 60px 0 56px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="site-nav">
+  <div class="nav-logo"><span>Fix</span>ThatCopy<span>.com</span></div>
+  <div class="nav-label">Zaah Fonderson, VSL Lead Diagnostician</div>
+</nav>
+
+
+<!-- HERO -->
+<section id="hero">
+  <div class="container--wide">
+    <div class="hero-grid">
+
+      <!-- Left: Headline + form -->
+      <div class="hero-left">
+        <span class="kicker kicker--alert">Free Resource</span>
+        <h1>Find the Hidden Leak Bleeding Your VSL Dry</h1>
+        <p class="hero-subhead">Grab your free copy of my 7-Point VSL Leak Checklist.</p>
+
+        <div class="capture-box">
+          <span class="capture-box-label">Send me the checklist</span>
+          <div class="form-field">
+            <input class="form-input" type="text" placeholder="First name" autocomplete="given-name">
+          </div>
+          <div class="form-field">
+            <input class="form-input" type="email" placeholder="Email address" autocomplete="email">
+          </div>
+          <button class="btn btn--orange btn--block" style="margin-top: 8px;">Send Me the Checklist</button>
+          <p class="form-disclaimer">No cost. No contracts. Your information stays private.</p>
+        </div>
+      </div>
+
+      <!-- Right: Book cover -->
+      <div class="book-cover">
+        <span class="book-label">FixThatCopy.com</span>
+        <div class="book-title">7-Point VSL Leak Checklist</div>
+        <div class="book-subtitle">VSL Lead Recovery Framework</div>
+        <hr class="book-divider">
+        <div class="book-leak-row">
+          <span class="book-leak-num">01</span>
+          <span class="book-leak-name">Hook-Buyer Misalignment</span>
+        </div>
+        <div class="book-leak-row">
+          <span class="book-leak-num">02</span>
+          <span class="book-leak-name">Relevance Gap</span>
+        </div>
+        <div class="book-leak-row">
+          <span class="book-leak-num">03</span>
+          <span class="book-leak-name">Authority Before Empathy</span>
+        </div>
+        <div class="book-leak-row">
+          <span class="book-leak-num">04</span>
+          <span class="book-leak-name">Proof Without Resolution</span>
+        </div>
+        <div class="book-leak-row">
+          <span class="book-leak-num">05</span>
+          <span class="book-leak-name">Logic Bridge Collapse</span>
+        </div>
+        <div class="book-leak-row">
+          <span class="book-leak-num">06</span>
+          <span class="book-leak-name">Momentum Drag</span>
+        </div>
+        <div class="book-leak-row">
+          <span class="book-leak-num">07</span>
+          <span class="book-leak-name">Identity Displacement</span>
+        </div>
+        <hr class="book-divider">
+        <div class="book-author">By <span>Zaah Fonderson</span></div>
+        <div class="book-author" style="margin-top: 4px; letter-spacing: 0.07em;">VSL Lead Diagnostician</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- BODY COPY -->
+<section class="copy-section copy-section--base">
+  <div class="container">
+    <span class="kicker">The Opening Bleed</span>
+    <h2>Your VSL Used to Convert. The Lead Is Where It Stopped.</h2>
+    <p>Your VSL used to print. Now it limps.</p>
+    <p>Or it never scaled the way you planned in the first place.</p>
+    <p>This is the one book to read before you touch the script again.</p>
+    <p>My 7-Point VSL Leak Checklist names the hidden structural leaks that quietly kill conversion rates. The same leaks drain funnel momentum and burn ad ROI day after day.</p>
+    <p>These are not surface edits. They are not trendy frameworks.</p>
+    <p>They are friction points buried inside the first 500 to 1,000 words of your script. They push viewers to exit before your pitch ever begins.</p>
+    <p>The checklist is built for offer owners, media buyers, and direct-response marketers who already know their numbers.</p>
+    <p>I am Zaah Fonderson, VSL Lead Diagnostician at FixThatCopy.com. Inside, you get the diagnostic framework I use to recover conversion without changing your offer or your traffic.</p>
+  </div>
+</section>
+
+
+<!-- 7 LEAKS -->
+<section id="leaks">
+  <div class="container--wide">
+
+    <div class="leaks-intro">
+      <span class="kicker kicker--center">What's inside</span>
+      <h2>Inside the Checklist, You Get...</h2>
+    </div>
+
+    <div class="leaks-grid">
+
+      <div class="leak-item">
+        <div class="leak-n">01</div>
+        <div class="leak-content">
+          <div class="leak-tag">Diagnosis</div>
+          <div class="leak-name">Hook-Buyer Misalignment</div>
+          <div class="leak-desc">The leak that loses your viewer inside the first 30 seconds, before the pitch even starts.</div>
+        </div>
+      </div>
+
+      <div class="leak-item">
+        <div class="leak-n">02</div>
+        <div class="leak-content">
+          <div class="leak-tag">Gap Close</div>
+          <div class="leak-name">Relevance Gap</div>
+          <div class="leak-desc">The reason your viewer feels the VSL is talking to someone else's situation, not theirs.</div>
+        </div>
+      </div>
+
+      <div class="leak-item">
+        <div class="leak-n">03</div>
+        <div class="leak-content">
+          <div class="leak-tag">Structural Read</div>
+          <div class="leak-name">Authority Before Empathy</div>
+          <div class="leak-desc">The structural misorder that fires skepticism before trust has a chance to land.</div>
+        </div>
+      </div>
+
+      <div class="leak-item">
+        <div class="leak-n">04</div>
+        <div class="leak-content">
+          <div class="leak-tag">Fix</div>
+          <div class="leak-name">Proof Without Resolution</div>
+          <div class="leak-desc">Social proof that lands but leaves the viewer parked instead of moving forward.</div>
+        </div>
+      </div>
+
+      <div class="leak-item">
+        <div class="leak-n">05</div>
+        <div class="leak-content">
+          <div class="leak-tag">Detector</div>
+          <div class="leak-name">Logic Bridge Collapse</div>
+          <div class="leak-desc">The exact moment your structural argument breaks and the viewer mentally checks out.</div>
+        </div>
+      </div>
+
+      <div class="leak-item">
+        <div class="leak-n">06</div>
+        <div class="leak-content">
+          <div class="leak-tag">Sweep</div>
+          <div class="leak-name">Momentum Drag</div>
+          <div class="leak-desc">The small friction points that quietly erode attention right after the opening.</div>
+        </div>
+      </div>
+
+      <div class="leak-item leak-item--solo">
+        <div class="leak-n">07</div>
+        <div class="leak-content">
+          <div class="leak-tag">Repair</div>
+          <div class="leak-name">Identity Displacement</div>
+          <div class="leak-desc">So your viewer sees themselves in the script before the skepticism kicks in.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- CLOSING -->
+<section id="closing">
+  <div class="container">
+    <span class="kicker kicker--center">Stop the bleed at the lead</span>
+    <p>Whether your VSL used to convert or never scaled the way it should have, my 7-Point VSL Leak Checklist gives you the diagnostic and the specific fix for each leak.</p>
+    <p>Grab your copy now. Stop the bleed at the lead.</p>
+
+    <div class="closing-form">
+      <div class="form-field">
+        <input class="form-input" type="text" placeholder="First name" autocomplete="given-name">
+      </div>
+      <div class="form-field">
+        <input class="form-input" type="email" placeholder="Email address" autocomplete="email">
+      </div>
+      <button class="btn btn--orange btn--block btn--xl" style="margin-top: 8px;">Send Me My Free Checklist</button>
+      <p class="form-disclaimer">No cost. Your information stays private.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-links">
+    <a href="#">How does this work?</a>
+    <span class="footer-sep">&middot;</span>
+    <a href="#">Privacy Policy</a>
+    <span class="footer-sep">&middot;</span>
+    <a href="#">Terms of Service</a>
+  </div>
+  <div class="footer-id">
+    <span>Zaah Fonderson</span>, VSL Lead Diagnostician &nbsp;&middot;&nbsp; FixThatCopy.com
+  </div>
+  <div class="footer-copy">&copy; 2026 FixThatCopy.com. All rights reserved.</div>
+</footer>
+
+</body>
+</html>

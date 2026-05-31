@@ -772,11 +772,12 @@
     const author      = r.author    ? escHtml(r.author) : 'unknown';
     const context     = r.context   ? escHtml(r.context) : '';
     const foundDate   = r.found_date ? r.found_date.split('T')[0] : '';
-    const kwList      = r.keywords_matched
-      ? r.keywords_matched.split(',').map(function (k) {
-          return '<span class="kw-tag">' + escHtml(k.trim()) + '</span>';
-        }).join('')
-      : '';
+    const kwRaw       = r.keywords_matched;
+    const kwArr       = Array.isArray(kwRaw) ? kwRaw
+                        : (kwRaw ? String(kwRaw).split(',') : []);
+    const kwList      = kwArr.map(function (k) {
+      return '<span class="kw-tag">' + escHtml(String(k).trim()) + '</span>';
+    }).join('');
 
     const titleEl = r.url
       ? '<a href="' + escAttr(r.url) + '" target="_blank" rel="noopener">' + title + '</a>'

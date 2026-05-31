@@ -496,6 +496,37 @@
     }
     #auto-refresh-label input { cursor: pointer; accent-color: var(--orange); }
 
+    /* ─── SCANNER STATUS PILL ─── */
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      border-radius: 4px;
+      padding: 4px 10px;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      color: var(--text-ghost);
+    }
+    .status-pill .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      background: var(--text-ghost);
+    }
+    .status-pill--ok    { border-color: var(--green-border);  background: var(--green-dim); color: #4dd882; }
+    .status-pill--warn  { border-color: var(--orange-border); background: var(--orange-dim); color: var(--orange); }
+    .status-pill--error { border-color: var(--alert-border);  background: var(--alert-dim); color: var(--alert); }
+    .status-pill--ok   .dot { background: var(--green); }
+    .status-pill--warn .dot { background: var(--orange); animation: pulse 2s ease-in-out infinite; }
+    .status-pill--error .dot { background: var(--alert); animation: pulse 1.2s ease-in-out infinite; }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
     /* ─── RESPONSIVE ─── */
     @media (max-width: 600px) {
       .toolbar__inner { gap: 8px; }
@@ -522,7 +553,11 @@
       <h1>Lead Signal Scanner</h1>
       <p class="page-header__sub">Live keyword monitoring across Reddit, Warrior Forum, Substack, Indie Hackers, and YouTube. Flagging conversations about VSL performance, EPC, copywriters, and funnels.</p>
       <div class="page-header__meta">
-        <div class="meta-pill" id="last-updated-pill">Updated: <strong id="last-updated-val">loading...</strong></div>
+        <span class="status-pill" id="scanner-status-pill">
+          <span class="dot"></span>
+          <span id="scanner-status-text">Checking...</span>
+        </span>
+        <div class="meta-pill" id="last-updated-pill">Last scan: <strong id="last-updated-val">loading...</strong></div>
         <div class="meta-pill">Total results: <strong id="total-count-val">--</strong></div>
         <div class="meta-pill">Showing: <strong id="visible-count-val">--</strong></div>
         <div class="meta-pill">Done (hidden): <strong id="done-count-val">0</strong></div>
@@ -627,8 +662,10 @@
       })
       .then(function (data) {
         allResults = data.results || [];
-        document.getElementById('last-updated-val').textContent = data.last_updated || 'never';
+        var lastUpdated = data.last_updated || '';
+        document.getElementById('last-updated-val').textContent = lastUpdated || 'never';
         document.getElementById('total-count-val').textContent  = data.total_count || allResults.length;
+        updateStatusPill(lastUpdated);
         renderCards();
       })
       .catch(function (err) {
@@ -637,6 +674,48 @@
       .finally(function () {
         btn.classList.remove('spinning');
       });
+  }
+
+  // ─── SCANNER STATUS ──────────────────────────────────────────────────────
+  // Max expected gap between runs is ~13.5h (18:30 -> 08:00 overnight).
+  // > 14h = missed at least one run (warn). > 28h = multiple misses (error).
+  function updateStatusPill(lastUpdated) {
+    var pill = document.getElementById('scanner-status-pill');
+    var text = document.getElementById('scanner-status-text');
+
+    if (!lastUpdated || lastUpdated === 'Never — first scan not yet run') {
+      pill.className = 'status-pill status-pill--warn';
+      text.textContent = 'Scanner not yet run';
+      return;
+    }
+
+    // "YYYY-MM-DD HH:MM:SS" -> parse as local time
+    var normalized = lastUpdated.replace(' ', 'T');
+    var then = new Date(normalized);
+    if (isNaN(then.getTime())) {
+      pill.className = 'status-pill';
+      text.textContent = 'Unknown';
+      return;
+    }
+
+    var hoursAgo = (Date.now() - then.getTime()) / 3600000;
+
+    if (hoursAgo < 14) {
+      pill.className = 'status-pill status-pill--ok';
+      text.textContent = 'Running — ' + ageStr(hoursAgo) + ' ago';
+    } else if (hoursAgo < 28) {
+      pill.className = 'status-pill status-pill--warn';
+      text.textContent = 'Missed a run — ' + ageStr(hoursAgo) + ' ago';
+    } else {
+      pill.className = 'status-pill status-pill--error';
+      text.textContent = 'Scanner may be down — ' + ageStr(hoursAgo) + ' ago';
+    }
+  }
+
+  function ageStr(hoursAgo) {
+    if (hoursAgo < 1) return Math.round(hoursAgo * 60) + 'm';
+    if (hoursAgo < 24) return Math.round(hoursAgo) + 'h';
+    return Math.round(hoursAgo / 24) + 'd';
   }
 
   // ─── FILTER ──────────────────────────────────────────────────────────────

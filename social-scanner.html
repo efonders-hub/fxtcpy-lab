@@ -289,7 +289,7 @@
     .badge--reddit    { background: rgba(255,69,0,0.15);  color: #FF6314; border: 1px solid rgba(255,69,0,0.25); }
     .badge--warrior   { background: rgba(255,200,0,0.10); color: #FFCB00; border: 1px solid rgba(255,200,0,0.20); }
     .badge--substack  { background: rgba(255,104,58,0.12); color: #FF6A3A; border: 1px solid rgba(255,104,58,0.22); }
-    .badge--indiehackers { background: rgba(40,200,140,0.10); color: #28C88C; border: 1px solid rgba(40,200,140,0.20); }
+    .badge--hackernews { background: rgba(255,102,0,0.10); color: #FF6600; border: 1px solid rgba(255,102,0,0.20); }
     .badge--youtube   { background: rgba(255,0,0,0.12);  color: #FF4444; border: 1px solid rgba(255,0,0,0.22); }
     .badge--unknown   { background: var(--bg-elevated); color: var(--text-ghost); border: 1px solid var(--border); }
 
@@ -578,7 +578,7 @@
       <button class="filter-btn" data-filter-source="reddit">Reddit</button>
       <button class="filter-btn" data-filter-source="warrior_forum">Warrior</button>
       <button class="filter-btn" data-filter-source="substack">Substack</button>
-      <button class="filter-btn" data-filter-source="indie_hackers">Indie Hackers</button>
+      <button class="filter-btn" data-filter-source="hacker_news">Hacker News</button>
       <button class="filter-btn" data-filter-source="youtube">YouTube</button>
 
       <div class="toolbar__spacer"></div>
@@ -827,7 +827,7 @@
       reddit:        { cls: 'badge--reddit',       label: 'Reddit' },
       warrior_forum: { cls: 'badge--warrior',      label: 'Warrior Forum' },
       substack:      { cls: 'badge--substack',     label: 'Substack' },
-      indie_hackers: { cls: 'badge--indiehackers', label: 'Indie Hackers' },
+      hacker_news:   { cls: 'badge--hackernews',   label: 'Hacker News' },
       youtube:       { cls: 'badge--youtube',      label: 'YouTube' },
     };
     return map[src] || { cls: 'badge--unknown', label: src || 'Unknown' };

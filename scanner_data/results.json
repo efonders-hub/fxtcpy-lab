@@ -1,6 +1,6 @@
 {
-  "last_updated": "2026-05-30 23:46",
-  "total_count": 35,
+  "last_updated": "2026-05-30 23:48",
+  "total_count": 32,
   "results": [
     {
       "id": "e7ec58946228393cc4223b4b1af9bd18",
@@ -451,48 +451,6 @@
       "intent_score": 2,
       "keywords_matched": [
         "conversion rate"
-      ]
-    },
-    {
-      "id": "f8bc7fdc83efb44a01def297c0edb91a",
-      "source": "youtube",
-      "title": "Comment on: Why Your VSL Sounds Good But Still Doesn’t Convert",
-      "url": "https://www.youtube.com/watch?v=kCNvaCRJ4tY&lc=UgxzdlOV3Pmmo3r-Qs94AaABAg",
-      "excerpt": "If you&#39;re a coach, consultant or online educator and this video got you thinking, there&#39;s a good chance you already know what the problem is. My team and I work with coaches and educators at every stage, whether you&#39;re just getting started or already doing £8K, £15K or £35K a month and you want a proper set of outside eyes on your business, the link below is where that starts. Book a c",
-      "author": "@WilliamBrownConsults",
-      "context": "William Brown Consults | YouTube",
-      "found_date": "2026-05-30",
-      "intent_score": 2,
-      "keywords_matched": [
-        "vsl"
-      ]
-    },
-    {
-      "id": "07460b59506e9ef7004e9b9485fc622f",
-      "source": "youtube",
-      "title": "Comment on: Reasons why your VSL isn&#39;t converting",
-      "url": "https://www.youtube.com/watch?v=pVFJzlGm7_I&lc=UgyBk7_4pJ3ELTNnI8R4AaABAg",
-      "excerpt": "If you&#39;re a coach, consultant or online educator and this video got you thinking, there&#39;s a good chance you already know what the problem is. My team and I work with coaches and educators at every stage, whether you&#39;re just getting started or already doing £8K, £15K or £35K a month and you want a proper set of outside eyes on your business, the link below is where that starts. Book a c",
-      "author": "@WilliamBrownConsults",
-      "context": "William Brown Consults | YouTube",
-      "found_date": "2026-05-30",
-      "intent_score": 2,
-      "keywords_matched": [
-        "vsl"
-      ]
-    },
-    {
-      "id": "2bda4f426f6af69637abbc0097f72666",
-      "source": "youtube",
-      "title": "Comment on: Why Your Sales Funnel Isn’t Converting (And How to Fix It!) 😅 #shorts",
-      "url": "https://www.youtube.com/watch?v=aXASEEGqOwI&lc=UgyysotxuBvEreb81SJ4AaABAg",
-      "excerpt": "Start your free trial here 👉 <a href=\"https://www.skool.com/tlc/\">https://www.skool.com/tlc/</a> for small business lead generation.",
-      "author": "@sfdigital",
-      "context": "SF Digital Studios | YouTube",
-      "found_date": "2026-05-30",
-      "intent_score": 2,
-      "keywords_matched": [
-        "lead generation"
       ]
     }
   ]

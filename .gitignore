@@ -1,0 +1,12 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Scanner runtime files (stay local — never commit)
+scanner_leads.db
+scanner.lock
+scanner.log
+*.lock
+
+# scanner_data/results.json IS committed — it's the dashboard feed
+# Do NOT add scanner_data/ here

@@ -287,7 +287,7 @@
       flex-shrink: 0;
     }
     .badge--reddit    { background: rgba(255,69,0,0.15);  color: #FF6314; border: 1px solid rgba(255,69,0,0.25); }
-    .badge--warrior   { background: rgba(255,200,0,0.10); color: #FFCB00; border: 1px solid rgba(255,200,0,0.20); }
+    .badge--affiliatefix { background: rgba(0,180,120,0.10); color: #00B478; border: 1px solid rgba(0,180,120,0.20); }
     .badge--substack  { background: rgba(255,104,58,0.12); color: #FF6A3A; border: 1px solid rgba(255,104,58,0.22); }
     .badge--hackernews { background: rgba(255,102,0,0.10); color: #FF6600; border: 1px solid rgba(255,102,0,0.20); }
     .badge--youtube   { background: rgba(255,0,0,0.12);  color: #FF4444; border: 1px solid rgba(255,0,0,0.22); }
@@ -551,7 +551,7 @@
     <div class="container--wide">
       <div class="page-header__eyebrow">Internal Tool</div>
       <h1>Lead Signal Scanner</h1>
-      <p class="page-header__sub">Live keyword monitoring across Reddit, Warrior Forum, Substack, Hacker News, and YouTube. Flagging conversations about VSL performance, EPC, copywriters, and funnels.</p>
+      <p class="page-header__sub">Live keyword monitoring across Reddit, AffiliateFix, Substack, Hacker News, and YouTube. Flagging conversations about VSL performance, EPC, copywriters, and funnels.</p>
       <div class="page-header__meta">
         <span class="status-pill" id="scanner-status-pill">
           <span class="dot"></span>
@@ -576,7 +576,7 @@
       <span class="filter-label" style="margin-left:12px;">Source:</span>
       <button class="filter-btn active" data-filter-source="all">All</button>
       <button class="filter-btn" data-filter-source="reddit">Reddit</button>
-      <button class="filter-btn" data-filter-source="warrior_forum">Warrior</button>
+      <button class="filter-btn" data-filter-source="affiliatefix">AffiliateFix</button>
       <button class="filter-btn" data-filter-source="substack">Substack</button>
       <button class="filter-btn" data-filter-source="hacker_news">Hacker News</button>
       <button class="filter-btn" data-filter-source="youtube">YouTube</button>
@@ -826,7 +826,7 @@
   function sourceLabel(src) {
     const map = {
       reddit:        { cls: 'badge--reddit',       label: 'Reddit' },
-      warrior_forum: { cls: 'badge--warrior',      label: 'Warrior Forum' },
+      affiliatefix:  { cls: 'badge--affiliatefix',  label: 'AffiliateFix' },
       substack:      { cls: 'badge--substack',     label: 'Substack' },
       hacker_news:   { cls: 'badge--hackernews',   label: 'Hacker News' },
       youtube:       { cls: 'badge--youtube',      label: 'YouTube' },

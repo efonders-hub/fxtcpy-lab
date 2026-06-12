@@ -1,7 +1,21 @@
 {
-  "last_updated": "2026-06-12 08:01",
-  "total_count": 1,
+  "last_updated": "2026-06-12 13:01",
+  "total_count": 2,
   "results": [
+    {
+      "id": "168bc7e42f8ca03ec239e2b6337060c3",
+      "source": "hacker_news",
+      "title": "Show HN: Tokenbrook Vale, a cozy office village for your AI agents",
+      "url": "https://github.com/Jodacola/tokenbrook",
+      "excerpt": "Also running live at <a href=\"https:&#x2F;&#x2F;demo.tokenbrook.com\" rel=\"nofollow\">https:&#x2F;&#x2F;demo.tokenbrook.com</a> - hook up your own Claude instances per instructions in the repo!<p>This is something I&#x27;ve been wanting to throw together for a few weeks; I thought it&#x27;d be a fun visualization of my agents running through Claude.<p>I&#x27;m a nerd for retro pixel art style games ",
+      "author": "jodacola",
+      "context": "Hacker News | 1 pts | 0d ago",
+      "found_date": "2026-06-12",
+      "intent_score": 2,
+      "keywords_matched": [
+        "hook"
+      ]
+    },
     {
       "id": "af2767398dd638745bd5b9fa2b5c36fb",
       "source": "youtube",

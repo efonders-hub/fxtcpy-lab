@@ -1,7 +1,21 @@
 {
-  "last_updated": "2026-06-28 18:31",
-  "total_count": 2,
+  "last_updated": "2026-06-29 13:01",
+  "total_count": 3,
   "results": [
+    {
+      "id": "f64cee336874b88816846ba86c9ddcec",
+      "source": "youtube",
+      "title": "Comment on: Perpétuo Para Público Frio: Conheça O “Funil De VSL” | Tiago Filemon - Segredos da Escala #161",
+      "url": "https://www.youtube.com/watch?v=yhjZTeFNMHk&lc=Ugzmhdd82fSatlPtf9V4AaABAg",
+      "excerpt": "João e Thiago eu só tenho a agradecer a vocês por fornecerem este conteúdo gratuitamente. Eu me comprometo que nos meus primeiros R$100k com direct response darei o depoimento mencionando que este podcast foi a minha virada de chave. Vocês não tem a devida noção do impacto que este conteúdo está fazendo na minha vida já atualmente. Gratidão 👊🏼",
+      "author": "@aenergiadavida",
+      "context": "VTurb | YouTube",
+      "found_date": "2026-06-29",
+      "intent_score": 2,
+      "keywords_matched": [
+        "direct response"
+      ]
+    },
     {
       "id": "168bc7e42f8ca03ec239e2b6337060c3",
       "source": "hacker_news",

@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The VSL Leak Grader | FixThatCopy</title>
+<style>
+  :root {
+    --ink: #1a1d21; --paper: #f7f6f3; --accent: #b3261e;
+    --muted: #5c6066; --line: #d9d6d0; --ok: #1e7a3c;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: Georgia, 'Times New Roman', serif;
+    background: var(--paper); color: var(--ink);
+    line-height: 1.55; padding: 2rem 1rem 4rem;
+  }
+  main { max-width: 640px; margin: 0 auto; }
+  .brand {
+    font-family: Arial, Helvetica, sans-serif; font-size: .8rem;
+    letter-spacing: .12em; text-transform: uppercase; color: var(--muted);
+    margin-bottom: 2rem;
+  }
+  h1 { font-size: 1.9rem; line-height: 1.2; margin-bottom: .75rem; }
+  .sub { font-size: 1.05rem; color: var(--muted); margin-bottom: 2rem; }
+  form { background: #fff; border: 1px solid var(--line); padding: 1.5rem; }
+  label { display: block; font-family: Arial, sans-serif; font-size: .85rem;
+          font-weight: bold; margin: 1.1rem 0 .35rem; }
+  label:first-of-type { margin-top: 0; }
+  input[type=email], input[type=text], textarea {
+    width: 100%; padding: .6rem; font-size: 1rem; font-family: inherit;
+    border: 1px solid var(--line); background: var(--paper);
+  }
+  textarea { min-height: 220px; resize: vertical; }
+  .opts { display: grid; gap: .35rem; }
+  .opts label { font-weight: normal; margin: 0; display: flex;
+                gap: .5rem; align-items: baseline; font-family: Georgia, serif;
+                font-size: .95rem; }
+  .hp { position: absolute; left: -9999px; }
+  button {
+    margin-top: 1.4rem; width: 100%; padding: .85rem; font-size: 1.05rem;
+    font-family: Arial, sans-serif; font-weight: bold; letter-spacing: .02em;
+    color: #fff; background: var(--accent); border: 0; cursor: pointer;
+  }
+  button:disabled { opacity: .6; cursor: wait; }
+  .msg { margin-top: 1rem; padding: .8rem; font-size: .95rem; display: none; }
+  .msg.ok { display: block; background: #e8f3ec; color: var(--ok);
+            border: 1px solid #bfe0cb; }
+  .msg.err { display: block; background: #fbeae9; color: var(--accent);
+             border: 1px solid #eec6c3; }
+  .fine { font-size: .8rem; color: var(--muted); margin-top: 1.25rem;
+          font-family: Arial, sans-serif; }
+</style>
+</head>
+<body>
+<main>
+  <div class="brand">FixThatCopy &middot; VSL Lead Diagnostics</div>
+
+  <!-- Copy: BNSN Strategist 2026-07-03, Quill-gated. -->
+  <h1>Your VSL is leaking viewers. This shows you exactly where.</h1>
+  <p class="sub">Paste the first 500 to 1,000 words of your VSL into the
+  form below. A human diagnostician reads it and scores the structural
+  leaks pulling your viewers out. You get a full report, usually the
+  same day. No charge. No call.</p>
+
+  <form id="graderForm" autocomplete="off">
+    <label for="email">Your email (the read is delivered there)</label>
+    <input type="email" id="email" name="email" required>
+
+    <label>Which is closest to you?</label>
+    <div class="opts">
+      <label><input type="radio" name="qualifier" value="Owner" required> I own this offer</label>
+      <label><input type="radio" name="qualifier" value="Media Buyer"> I buy or manage traffic for it</label>
+      <label><input type="radio" name="qualifier" value="Copywriter"> I wrote or will rewrite the VSL</label>
+      <label><input type="radio" name="qualifier" value="Portfolio"> I run several offers</label>
+      <label><input type="radio" name="qualifier" value="Agency"> Agency - I do this for clients</label>
+    </div>
+
+    <label for="offer">Product or offer name (optional)</label>
+    <input type="text" id="offer" name="offer" maxlength="120">
+
+    <label for="vsl_text">The opening of your VSL - the first 500 to 1,000 words</label>
+    <textarea id="vsl_text" name="vsl_text" required
+      placeholder="Paste the script or transcript of your opening here. Words, not a video link."></textarea>
+
+    <input class="hp" type="text" name="website" tabindex="-1" aria-hidden="true">
+
+    <button id="submitBtn" type="submit">Get My Bleed Score</button>
+    <div id="msg" class="msg"></div>
+    <p class="fine">Reviewed and sent by a human diagnostician, usually the
+    same day. No spam, no drip sequence you didn't ask for.</p>
+  </form>
+</main>
+
+<script>
+  // CONFIG: deployed Apps Script collector (2026-07-03).
+  var COLLECTOR_URL = "https://script.google.com/macros/s/AKfycbwzAuz-b9tIbeqHpQGOMjUgxKqiC4DyOZtI9mFqrn222TafOcp9pgGTu5QLA8gSxogL/exec";
+
+  var form = document.getElementById('graderForm');
+  var btn = document.getElementById('submitBtn');
+  var msg = document.getElementById('msg');
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    msg.className = 'msg';
+
+    var text = document.getElementById('vsl_text').value.trim();
+    if (text.length < 150) {
+      return show('err', 'Paste at least the first few hundred words so the read has enough to work with.');
+    }
+
+    if (!COLLECTOR_URL) {
+      // Fallback while the collector is not yet deployed: hand off to email.
+      var body = 'Qualifier: ' + (form.qualifier.value || '') +
+        '%0AOffer: ' + encodeURIComponent(document.getElementById('offer').value) +
+        '%0A%0A' + encodeURIComponent(text);
+      location.href = 'mailto:efonders@gmail.com?subject=' +
+        encodeURIComponent('Grader submission: ' + (document.getElementById('offer').value || 'my VSL')) +
+        '&body=' + body;
+      return;
+    }
+
+    btn.disabled = true;
+    var data = new URLSearchParams(new FormData(form));
+    fetch(COLLECTOR_URL, { method: 'POST', body: data })
+      .then(function (r) { return r.json(); })
+      .then(function (j) {
+        if (j.ok) {
+          form.reset();
+          show('ok', 'Received. Your bleed score is on its way to your inbox.');
+        } else {
+          show('err', j.error || 'Something went wrong. Try again.');
+        }
+      })
+      .catch(function () {
+        show('err', 'Could not reach the server. Try again in a minute.');
+      })
+      .finally(function () { btn.disabled = false; });
+  });
+
+  function show(kind, text) {
+    msg.className = 'msg ' + kind;
+    msg.textContent = text;
+  }
+</script>
+</body>
+</html>

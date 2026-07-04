@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -6,9 +6,9 @@
 <title>The VSL Leak Grader | FixThatCopy</title>
 <style>
   :root {
-    --bg: #0c1116; --card: #141b23; --line: #232c36;
-    --ink: #e9e4d8; --muted: #8a93a0; --gold: #d9a441;
-    --gold-dark: #b8862f; --ok: #7fd49a; --err: #f08a80;
+    --bg: #0D1F35; --card: #1A3855; --line: rgba(255,255,255,0.14);
+    --ink: #FFFFFF; --muted: rgba(255,255,255,0.78); --gold: #E8650A;
+    --gold-dark: #CC5500; --ok: #4fca87; --err: #E8192C;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
@@ -34,7 +34,7 @@
   label:first-of-type { margin-top: 0; }
   input[type=email], input[type=text], textarea {
     width: 100%; padding: .65rem .7rem; font-size: 1rem; font-family: inherit;
-    color: var(--ink); background: #0f151c;
+    color: var(--ink); background: #0F2A45;
     border: 1px solid var(--line); border-radius: 6px;
   }
   input:focus, textarea:focus {
@@ -52,7 +52,7 @@
   button {
     margin-top: 1.5rem; width: 100%; padding: .9rem; font-size: 1.05rem;
     font-family: Arial, sans-serif; font-weight: bold; letter-spacing: .03em;
-    color: #14100a; background: var(--gold); border: 0; border-radius: 8px;
+    color: #FFFFFF; background: var(--gold); border: 0; border-radius: 8px;
     cursor: pointer;
   }
   button:hover { background: var(--gold-dark); }
@@ -67,7 +67,7 @@
   .fine { font-size: .8rem; color: var(--muted); margin-top: 1.3rem;
           font-family: Arial, sans-serif; }
   .foot { margin-top: 2.4rem; font-family: Arial, sans-serif;
-          font-size: .78rem; color: #5c6572; text-align: center; }
+          font-size: .78rem; color: rgba(255,255,255,0.50); text-align: center; }
 </style>
 </head>
 <body>
@@ -179,3 +179,4 @@
 </script>
 </body>
 </html>
+

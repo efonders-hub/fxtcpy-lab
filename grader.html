@@ -6,66 +6,87 @@
 <title>The VSL Leak Grader | FixThatCopy</title>
 <style>
   :root {
-    --ink: #1a1d21; --paper: #f7f6f3; --accent: #b3261e;
-    --muted: #5c6066; --line: #d9d6d0; --ok: #1e7a3c;
+    --bg: #0c1116; --card: #141b23; --line: #232c36;
+    --ink: #e9e4d8; --muted: #8a93a0; --gold: #d9a441;
+    --gold-dark: #b8862f; --ok: #7fd49a; --err: #f08a80;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
     font-family: Georgia, 'Times New Roman', serif;
-    background: var(--paper); color: var(--ink);
-    line-height: 1.55; padding: 2rem 1rem 4rem;
+    background: var(--bg); color: var(--ink);
+    line-height: 1.55; padding: 2.5rem 1rem 4rem;
   }
   main { max-width: 640px; margin: 0 auto; }
   .brand {
-    font-family: Arial, Helvetica, sans-serif; font-size: .8rem;
-    letter-spacing: .12em; text-transform: uppercase; color: var(--muted);
+    font-family: Arial, Helvetica, sans-serif; font-size: .78rem;
+    letter-spacing: .28em; text-transform: uppercase; color: var(--gold);
     margin-bottom: 2rem;
   }
-  h1 { font-size: 1.9rem; line-height: 1.2; margin-bottom: .75rem; }
+  h1 { font-size: 2rem; line-height: 1.2; margin-bottom: .85rem; }
   .sub { font-size: 1.05rem; color: var(--muted); margin-bottom: 2rem; }
-  form { background: #fff; border: 1px solid var(--line); padding: 1.5rem; }
-  label { display: block; font-family: Arial, sans-serif; font-size: .85rem;
-          font-weight: bold; margin: 1.1rem 0 .35rem; }
+  form {
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: 12px; padding: 1.75rem;
+  }
+  label { display: block; font-family: Arial, sans-serif; font-size: .82rem;
+          font-weight: bold; letter-spacing: .04em; color: var(--ink);
+          margin: 1.2rem 0 .4rem; }
   label:first-of-type { margin-top: 0; }
   input[type=email], input[type=text], textarea {
-    width: 100%; padding: .6rem; font-size: 1rem; font-family: inherit;
-    border: 1px solid var(--line); background: var(--paper);
+    width: 100%; padding: .65rem .7rem; font-size: 1rem; font-family: inherit;
+    color: var(--ink); background: #0f151c;
+    border: 1px solid var(--line); border-radius: 6px;
+  }
+  input:focus, textarea:focus {
+    outline: none; border-color: var(--gold);
   }
   textarea { min-height: 220px; resize: vertical; }
-  .opts { display: grid; gap: .35rem; }
+  .counter { font-family: Arial, sans-serif; font-size: .78rem;
+             color: var(--muted); margin-top: .4rem; }
+  .opts { display: grid; gap: .4rem; }
   .opts label { font-weight: normal; margin: 0; display: flex;
-                gap: .5rem; align-items: baseline; font-family: Georgia, serif;
-                font-size: .95rem; }
+                gap: .55rem; align-items: baseline; font-family: Georgia, serif;
+                font-size: .95rem; letter-spacing: 0; color: var(--ink); }
+  .opts input { accent-color: var(--gold); }
   .hp { position: absolute; left: -9999px; }
   button {
-    margin-top: 1.4rem; width: 100%; padding: .85rem; font-size: 1.05rem;
-    font-family: Arial, sans-serif; font-weight: bold; letter-spacing: .02em;
-    color: #fff; background: var(--accent); border: 0; cursor: pointer;
+    margin-top: 1.5rem; width: 100%; padding: .9rem; font-size: 1.05rem;
+    font-family: Arial, sans-serif; font-weight: bold; letter-spacing: .03em;
+    color: #14100a; background: var(--gold); border: 0; border-radius: 8px;
+    cursor: pointer;
   }
+  button:hover { background: var(--gold-dark); }
   button:disabled { opacity: .6; cursor: wait; }
-  .msg { margin-top: 1rem; padding: .8rem; font-size: .95rem; display: none; }
-  .msg.ok { display: block; background: #e8f3ec; color: var(--ok);
-            border: 1px solid #bfe0cb; }
-  .msg.err { display: block; background: #fbeae9; color: var(--accent);
-             border: 1px solid #eec6c3; }
-  .fine { font-size: .8rem; color: var(--muted); margin-top: 1.25rem;
+  button:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+  .msg { margin-top: 1rem; padding: .85rem; font-size: .95rem; display: none;
+         border-radius: 6px; }
+  .msg.ok { display: block; background: rgba(127,212,154,.09); color: var(--ok);
+            border: 1px solid rgba(127,212,154,.35); }
+  .msg.err { display: block; background: rgba(240,138,128,.09); color: var(--err);
+             border: 1px solid rgba(240,138,128,.35); }
+  .fine { font-size: .8rem; color: var(--muted); margin-top: 1.3rem;
           font-family: Arial, sans-serif; }
+  .foot { margin-top: 2.4rem; font-family: Arial, sans-serif;
+          font-size: .78rem; color: #5c6572; text-align: center; }
 </style>
 </head>
 <body>
 <main>
   <div class="brand">FixThatCopy &middot; VSL Lead Diagnostics</div>
 
-  <!-- Copy: BNSN Strategist 2026-07-03, Quill-gated. -->
+  <!-- Copy: BNSN Strategist 2026-07-03, Quill-gated. Visual restyle 2026-07-04. -->
   <h1>Your VSL is leaking viewers. This shows you exactly where.</h1>
-  <p class="sub">Paste the first 500 to 1,000 words of your VSL into the
-  form below. A human diagnostician reads it and scores the structural
-  leaks pulling your viewers out. You get a full report, usually the
+  <p class="sub">Paste your whole VSL script into the form below. A human
+  diagnostician reads it, finds the opening, and scores the structural
+  problems pulling your viewers out. You get a full report, usually the
   same day. No charge. No call.</p>
 
   <form id="graderForm" autocomplete="off">
     <label for="email">Your email (the read is delivered there)</label>
     <input type="email" id="email" name="email" required>
+
+    <label for="name">Your first name (optional, so the report greets you by name)</label>
+    <input type="text" id="name" name="name" maxlength="60">
 
     <label>Which is closest to you?</label>
     <div class="opts">
@@ -79,45 +100,51 @@
     <label for="offer">Product or offer name (optional)</label>
     <input type="text" id="offer" name="offer" maxlength="120">
 
-    <label for="vsl_text">The opening of your VSL - the first 500 to 1,000 words</label>
+    <label for="vsl_text">Your VSL script: paste the whole thing</label>
     <textarea id="vsl_text" name="vsl_text" required
-      placeholder="Paste the script or transcript of your opening here. Words, not a video link."></textarea>
+      placeholder="Paste your full script or transcript here. Words, not a video link. The grader finds and scores the opening automatically."></textarea>
+    <div class="counter" id="counter">0 words</div>
 
     <input class="hp" type="text" name="website" tabindex="-1" aria-hidden="true">
 
     <button id="submitBtn" type="submit">Get My Bleed Score</button>
-    <div id="msg" class="msg"></div>
+    <div id="msg" class="msg" role="status"></div>
     <p class="fine">Reviewed and sent by a human diagnostician, usually the
     same day. No spam, no drip sequence you didn't ask for.</p>
   </form>
+
+  <div class="foot">FixThatCopy.com</div>
 </main>
 
 <script>
-  // CONFIG: deployed Apps Script collector (2026-07-03).
+  // CONFIG: deployed Apps Script collector (v2 pending redeploy 2026-07-04).
   var COLLECTOR_URL = "https://script.google.com/macros/s/AKfycbwzAuz-b9tIbeqHpQGOMjUgxKqiC4DyOZtI9mFqrn222TafOcp9pgGTu5QLA8gSxogL/exec";
+  var CHAR_LIMIT = 49000;
 
   var form = document.getElementById('graderForm');
   var btn = document.getElementById('submitBtn');
   var msg = document.getElementById('msg');
+  var ta = document.getElementById('vsl_text');
+  var counter = document.getElementById('counter');
+
+  ta.addEventListener('input', function () {
+    var t = ta.value.trim();
+    var words = t ? t.split(/\s+/).length : 0;
+    var line = words + (words === 1 ? ' word' : ' words');
+    if (ta.value.length > CHAR_LIMIT) {
+      line += ' - past the ' + CHAR_LIMIT.toLocaleString() +
+        ' character limit; we keep the first part, which covers the opening we grade';
+    }
+    counter.textContent = line;
+  });
 
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     msg.className = 'msg';
 
-    var text = document.getElementById('vsl_text').value.trim();
+    var text = ta.value.trim();
     if (text.length < 150) {
       return show('err', 'Paste at least the first few hundred words so the read has enough to work with.');
-    }
-
-    if (!COLLECTOR_URL) {
-      // Fallback while the collector is not yet deployed: hand off to email.
-      var body = 'Qualifier: ' + (form.qualifier.value || '') +
-        '%0AOffer: ' + encodeURIComponent(document.getElementById('offer').value) +
-        '%0A%0A' + encodeURIComponent(text);
-      location.href = 'mailto:efonders@gmail.com?subject=' +
-        encodeURIComponent('Grader submission: ' + (document.getElementById('offer').value || 'my VSL')) +
-        '&body=' + body;
-      return;
     }
 
     btn.disabled = true;
@@ -127,7 +154,14 @@
       .then(function (j) {
         if (j.ok) {
           form.reset();
-          show('ok', 'Received. Your bleed score is on its way to your inbox.');
+          counter.textContent = '0 words';
+          var received = j.words_received
+            ? 'Received: ' + Number(j.words_received).toLocaleString() + ' words. '
+            : 'Received. ';
+          var trunc = j.truncated
+            ? 'That includes your full opening, the part the grader scores. '
+            : '';
+          show('ok', received + trunc + 'Your bleed score is on its way to your inbox.');
         } else {
           show('err', j.error || 'Something went wrong. Try again.');
         }

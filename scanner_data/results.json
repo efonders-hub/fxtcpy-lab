@@ -1,7 +1,21 @@
 {
-  "last_updated": "2026-07-04 13:01",
-  "total_count": 3,
+  "last_updated": "2026-07-04 18:31",
+  "total_count": 4,
   "results": [
+    {
+      "id": "0491995eae2fb1877bb05ae7a9fa0282",
+      "source": "youtube",
+      "title": "Comment on: Perpétuo Para Público Frio: Conheça O “Funil De VSL” | Tiago Filemon - Segredos da Escala #161",
+      "url": "https://www.youtube.com/watch?v=yhjZTeFNMHk&lc=UgyNKm3ky0JS3Lvv4j94AaABAg",
+      "excerpt": "Eu agradeço muito esses podcasts do Vturb, são maravilhosos, eu aprendo muito com todos os convidados. Eu aprendi a fazer VSL com o Hytallo Soares e todas a sua equipe.<br>Mas ainda não estou escalando porque estou aprimorando as minhas VSLs. Gratidão!!!😀🙏",
+      "author": "@Crypto_Lady_Abundance",
+      "context": "VTurb | YouTube",
+      "found_date": "2026-07-04",
+      "intent_score": 2,
+      "keywords_matched": [
+        "vsl"
+      ]
+    },
     {
       "id": "f64cee336874b88816846ba86c9ddcec",
       "source": "youtube",

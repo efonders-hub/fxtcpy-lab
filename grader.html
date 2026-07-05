@@ -127,6 +127,15 @@
   var ta = document.getElementById('vsl_text');
   var counter = document.getElementById('counter');
 
+  // Prefill for readers arriving from a delivery email (?e=address).
+  // Removes the double email ask flagged in the 2026-07-05 cold-read review.
+  var pe = new URLSearchParams(location.search).get('e') || '';
+  if (pe && /^[^\s@{]+@[^\s@]+\.[^\s@]+$/.test(pe)) {
+    document.getElementById('email').value = pe;
+    document.querySelector('label[for="email"]').textContent =
+      'Your email (prefilled from your signup; edit it if the report should go elsewhere)';
+  }
+
   ta.addEventListener('input', function () {
     var t = ta.value.trim();
     var words = t ? t.split(/\s+/).length : 0;

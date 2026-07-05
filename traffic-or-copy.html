@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Is It the Traffic or the Copy? | FixThatCopy</title>
+<style>
+  :root {
+    --bg: #0D1F35; --card: #1A3855; --surface: #0F2A45;
+    --line: rgba(255,255,255,0.14); --ink: #FFFFFF;
+    --muted: rgba(255,255,255,0.78); --orange: #E8650A; --orange-hover: #CC5500;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: Georgia, 'Times New Roman', serif;
+    background: var(--bg); color: var(--ink);
+    line-height: 1.6; padding: 2.5rem 1rem 4rem;
+  }
+  main { max-width: 640px; margin: 0 auto; }
+  .brand {
+    font-family: Arial, Helvetica, sans-serif; font-size: .78rem;
+    letter-spacing: .28em; text-transform: uppercase; color: var(--orange);
+    margin-bottom: 2rem;
+  }
+  h1 { font-size: 2.1rem; line-height: 1.2; margin-bottom: .9rem; }
+  .frame { font-size: 1.05rem; color: var(--muted); margin-bottom: 2rem; }
+  .votes { display: grid; gap: .9rem; margin-bottom: 1.5rem; }
+  .votes button {
+    padding: 1.1rem; font-size: 1.15rem; font-family: Georgia, serif;
+    color: var(--ink); background: var(--card);
+    border: 1px solid var(--line); border-radius: 10px; cursor: pointer;
+    text-align: left;
+  }
+  .votes button:hover { border-color: var(--orange); background: #1E4268; }
+  .votes button:focus-visible { outline: 2px solid var(--orange); outline-offset: 2px; }
+  .votes .mark { color: var(--orange); font-weight: bold; margin-right: .6rem; }
+  #after { display: none; }
+  .panel {
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: 12px; padding: 1.6rem; margin-top: .5rem;
+  }
+  .after-line { color: var(--muted); margin-bottom: 1.2rem; }
+  .formwrap { min-height: 120px; }
+  .foot { margin-top: 2.4rem; font-family: Arial, sans-serif;
+          font-size: .78rem; color: rgba(255,255,255,0.50); text-align: center; }
+</style>
+</head>
+<body>
+<main>
+  <div class="brand">FixThatCopy &middot; VSL Lead Diagnostics</div>
+
+  <!-- Copy: BNSN Strategist 2026-07-04, Quill-gated. -->
+  <h1>Is it the traffic or the copy?</h1>
+  <p class="frame">Every funnel that starts declining has the same argument.
+  Traffic says it's the copy. Copy says it's the traffic. Both sides have data
+  that looks right. Click the answer you're leaning toward right now.</p>
+
+  <div class="votes" id="votes">
+    <button type="button" data-side="traffic"><span class="mark">&rarr;</span>It's the traffic. The audience got worse, the copy still holds.</button>
+    <button type="button" data-side="copy"><span class="mark">&rarr;</span>It's the copy. The traffic is fine, the message stopped landing.</button>
+  </div>
+
+  <div id="after">
+    <div class="panel">
+      <p class="after-line">Most people in your position lean exactly the way
+      you just did, and most of them are half right. The diagnostic signal that
+      separates a traffic problem from a copy problem is one number in your
+      analytics. Enter your email and I will show you exactly which number to
+      check in your account right now.</p>
+      <div class="formwrap" id="form-traffic" style="display:none">
+        <div class="ml-embedded" data-form="Nls2J4"></div>
+      </div>
+      <div class="formwrap" id="form-copy" style="display:none">
+        <div class="ml-embedded" data-form="jRZO2D"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="foot">FixThatCopy.com</div>
+</main>
+
+<script>
+  (function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[])
+  .push(arguments);},l=d.createElement(e),l.async=1,l.src=u,
+  n=d.getElementsByTagName(e)[0],n.parentNode.insertBefore(l,n);})
+  (window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
+  ml('account', '1808449');
+
+  document.getElementById('votes').addEventListener('click', function (e) {
+    var btn = e.target.closest('button');
+    if (!btn) return;
+    document.getElementById('votes').style.display = 'none';
+    document.getElementById('after').style.display = 'block';
+    document.getElementById('form-' + btn.dataset.side).style.display = 'block';
+    document.getElementById('after').scrollIntoView({ behavior: 'smooth' });
+  });
+</script>
+</body>
+</html>

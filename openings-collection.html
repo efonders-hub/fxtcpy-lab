@@ -9,12 +9,19 @@
   :root {
     --bg: #0D1F35; --card: #1A3855; --surface: #0F2A45;
     --line: rgba(255,255,255,0.14); --ink: #FFFFFF;
-    --muted: rgba(255,255,255,0.78); --orange: #E8650A;
+    --muted: rgba(255,255,255,0.88); --orange: #E8650A;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-size: 18px; }
   body { font-family: Georgia, 'Times New Roman', serif; background: var(--bg);
-         color: var(--muted); line-height: 1.7; padding: 2.5rem 1rem 4rem; }
+         color: var(--muted); line-height: 1.72; padding: 2.5rem 1rem 4rem; }
   main { max-width: 680px; margin: 0 auto; }
+  .logo { line-height: 1; margin-bottom: 1.9rem; }
+  .logo-wm { font-family: 'Arial Black','Helvetica Neue',Arial,sans-serif; font-weight: 900;
+             font-size: 1.55rem; letter-spacing: -.3px; color: #fff; display: block; }
+  .logo-wm .logo-o { color: var(--orange); }
+  .logo-sub { font-family: Arial,Helvetica,sans-serif; font-weight: 700; font-size: .6rem;
+              letter-spacing: .28em; text-transform: uppercase; color: #7E90A8; display: block; margin-top: .42rem; }
   .brand { font-family: Arial, sans-serif; font-size: .78rem; letter-spacing: .28em;
            text-transform: uppercase; color: var(--orange); margin-bottom: 2rem; }
   h1 { font-size: 2rem; line-height: 1.25; color: var(--ink); margin: 0 0 1.4rem; }
@@ -41,7 +48,10 @@
 </head>
 <body>
 <main>
-  <div class="brand">FixThatCopy &middot; VSL Lead Diagnostics</div>
+  <div class="logo">
+    <span class="logo-wm">FixThat<span class="logo-o">Copy</span></span>
+    <span class="logo-sub">VSL Lead Diagnostics</span>
+  </div>
 <p>﻿# Where your VSL opening breaks</p>
 <p class="subtitle"><em>Ten real openings from the diagnostic archive, with the exact line where each one started losing sales.</em></p>
 <p>If your VSL is still making sales but the numbers are softer than they were six months ago, look past your traffic first. The more likely cause is a structural problem in the first 500 to 1,000 words. It has been bleeding viewers since the campaign launched, and it never shows up as a line item on any dashboard.</p>

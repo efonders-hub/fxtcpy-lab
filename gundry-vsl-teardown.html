@@ -9,12 +9,19 @@
   :root {
     --bg: #0D1F35; --card: #1A3855; --surface: #0F2A45;
     --line: rgba(255,255,255,0.14); --ink: #FFFFFF;
-    --muted: rgba(255,255,255,0.80); --orange: #E8650A;
+    --muted: rgba(255,255,255,0.88); --orange: #E8650A;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-size: 18px; }
   body { font-family: Georgia, 'Times New Roman', serif; background: var(--bg);
-         color: var(--muted); line-height: 1.7; padding: 2.5rem 1rem 4rem; }
+         color: var(--muted); line-height: 1.72; padding: 2.5rem 1rem 4rem; }
   main { max-width: 680px; margin: 0 auto; }
+  .logo { line-height: 1; margin-bottom: 1.9rem; }
+  .logo-wm { font-family: 'Arial Black','Helvetica Neue',Arial,sans-serif; font-weight: 900;
+             font-size: 1.55rem; letter-spacing: -.3px; color: #fff; display: block; }
+  .logo-wm .logo-o { color: var(--orange); }
+  .logo-sub { font-family: Arial,Helvetica,sans-serif; font-weight: 700; font-size: .6rem;
+              letter-spacing: .28em; text-transform: uppercase; color: #7E90A8; display: block; margin-top: .42rem; }
   .brand { font-family: Arial, sans-serif; font-size: .78rem; letter-spacing: .28em;
            text-transform: uppercase; color: var(--orange); margin-bottom: 1.6rem; }
   h1 { font-size: 2.05rem; line-height: 1.22; color: var(--ink); margin: 0 0 1rem; }
@@ -68,7 +75,10 @@
 </head>
 <body>
 <main>
-  <div class="brand">FixThatCopy &middot; VSL Teardowns</div>
+  <div class="logo">
+    <span class="logo-wm">FixThat<span class="logo-o">Copy</span></span>
+    <span class="logo-sub">VSL Lead Diagnostics</span>
+  </div>
 
   <h1>Dr. Gundry's ProPlant VSL crossed nine figures. One structural move inside the opening is still leaving money on the table.</h1>
   <p class="dek">A Bleed Index structural read on one of direct response's biggest VSL wins, and the one pattern that still costs viewers at the top.</p>

@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="The Bleed Index Library: structural teardowns of proven VSL openings, each scored 0 to 100 on the Bleed Index and mapped to one of seven named structural leaks. A reference standard for VSL openings from FixThatCopy.">
+<title>The Bleed Index Library: Proven VSL Openings, Scored and Mapped | FixThatCopy</title>
+<style>
+  :root {
+    --bg: #0D1F35; --card: #1A3855; --surface: #0F2A45;
+    --line: rgba(255,255,255,0.14); --ink: #FFFFFF;
+    --muted: rgba(255,255,255,0.88); --orange: #E8650A;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-size: 18px; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: var(--bg);
+         color: var(--muted); line-height: 1.72; padding: 2.5rem 1rem 4rem; }
+  main { max-width: 700px; margin: 0 auto; }
+  .logo { line-height: 1; margin-bottom: 1.9rem; }
+  .logo-wm { font-family: 'Arial Black','Helvetica Neue',Arial,sans-serif; font-weight: 900;
+             font-size: 1.55rem; letter-spacing: -.3px; color: #fff; display: block; }
+  .logo-wm .logo-o { color: var(--orange); }
+  .logo-sub { font-family: Arial,Helvetica,sans-serif; font-weight: 700; font-size: .6rem;
+              letter-spacing: .28em; text-transform: uppercase; color: #7E90A8; display: block; margin-top: .42rem; }
+  .brand { font-family: Arial, sans-serif; font-size: .78rem; letter-spacing: .28em;
+           text-transform: uppercase; color: var(--orange); margin-bottom: 1.4rem; }
+  h1 { font-size: 2.05rem; line-height: 1.22; color: var(--ink); margin: 0 0 1rem; }
+  h2 { font-family: Arial, sans-serif; font-size: .82rem; letter-spacing: .16em;
+       text-transform: uppercase; color: var(--orange); margin: 2.6rem 0 1rem; }
+  p { margin: 0 0 1rem; }
+  p.dek { font-size: 1.1rem; color: rgba(255,255,255,0.64); margin-bottom: 1.2rem; }
+  .coverage { font-family: Arial, sans-serif; font-size: .84rem; color: rgba(255,255,255,0.6);
+              border: 1px solid var(--line); border-radius: 8px; padding: .7rem 1rem; margin: 0 0 1rem; }
+  .posture { font-family: Arial, sans-serif; font-size: .82rem; color: rgba(255,255,255,0.55);
+             border-left: 3px solid var(--orange); padding: .5rem .9rem; margin: 0 0 1.6rem;
+             background: var(--surface); border-radius: 0 6px 6px 0; }
+  a { color: var(--orange); }
+  strong { color: var(--ink); }
+  a.cardlink { text-decoration: none; display: block; margin: 0 0 1.1rem; }
+  .tcard { background: var(--card); border: 1px solid var(--line); border-radius: 10px;
+           padding: 1.2rem 1.3rem; transition: border-color .15s ease; }
+  a.cardlink:hover .tcard { border-color: var(--orange); }
+  .tcard .row { display: flex; flex-wrap: wrap; gap: 1.2rem; align-items: baseline; }
+  .tcard .big { font-family: Arial, sans-serif; font-size: 2.2rem; font-weight: bold;
+                color: var(--orange); line-height: 1; }
+  .tcard .big span { font-size: .95rem; color: rgba(255,255,255,0.5); }
+  .tcard .meta { font-family: Arial, sans-serif; font-size: .78rem; letter-spacing: .04em; }
+  .tcard .meta .k { color: rgba(255,255,255,0.55); text-transform: uppercase; }
+  .tcard .meta .v { color: var(--ink); font-weight: bold; display: block; margin-top: .1rem; font-size: .95rem; }
+  .tcard .name { color: var(--ink); font-size: 1.15rem; font-weight: bold; margin: 0 0 .5rem; }
+  .tcard .hook { color: rgba(255,255,255,0.82); font-size: .98rem; margin: .7rem 0 0; }
+  .tcard .go { font-family: Arial, sans-serif; font-size: .8rem; color: var(--orange);
+               text-transform: uppercase; letter-spacing: .1em; margin-top: .8rem; display: block; }
+  .leakblock { background: var(--surface); border: 1px solid var(--line); border-radius: 8px;
+               padding: 1rem 1.15rem; margin: 0 0 1rem; }
+  .leakblock .lname { color: var(--orange); font-weight: bold; font-size: 1.05rem; margin: 0 0 .2rem; }
+  .leakblock .ldef { color: rgba(255,255,255,0.62); font-size: .92rem; margin: 0 0 .6rem; }
+  .leakblock .entry { color: var(--ink); font-size: .95rem; margin: 0 0 .25rem; }
+  .leakblock .entry span { color: rgba(255,255,255,0.5); }
+  .missing { font-family: Arial, sans-serif; font-size: .84rem; color: rgba(255,255,255,0.55);
+             margin: .4rem 0 0; }
+  .cta { background: var(--surface); border: 1px solid var(--line);
+         border-left: 3px solid var(--orange); border-radius: 8px;
+         padding: 1.4rem 1.3rem; margin: 2.6rem 0 1.5rem; }
+  .cta p { color: var(--ink); }
+  .btn { display: inline-block; font-family: Arial, sans-serif; font-weight: bold;
+         font-size: 1.05rem; color: #fff; background: var(--orange); text-decoration: none;
+         padding: .8rem 1.5rem; border-radius: 6px; margin: .6rem 0; }
+  .sig { font-style: normal; color: var(--ink); margin-top: 2rem; }
+  .sig span { display: block; color: rgba(255,255,255,0.6); font-size: .95rem; }
+  .foot { margin-top: 2.5rem; border-top: 1px solid var(--line); padding-top: 1.2rem;
+          font-family: Arial, sans-serif; font-size: .76rem;
+          color: rgba(255,255,255,0.45); line-height: 1.65; }
+</style>
+</head>
+<body>
+<main>
+  <div class="logo">
+    <span class="logo-wm">FixThat<span class="logo-o">Copy</span></span>
+    <span class="logo-sub">VSL Lead Diagnostics</span>
+  </div>
+
+  <div class="brand">FixThatCopy &middot; The Bleed Index</div>
+
+  <h1>The structural record on proven VSL openings. All scored. All mapped.</h1>
+  <p class="dek">Every entry is a structural read of a real, proven VSL opening. Each is scored 0 to 100 on the Bleed Index and mapped against the same seven named leaks.</p>
+
+  <div class="coverage">Twelve openings in the library so far, drawn from five of the seven leak categories. The archive runs deeper than what is posted here.</div>
+  <div class="posture">Every opening in this library is proven, public, and studied because winners teach more than failures do. Client work never appears here.</div>
+
+  <p>The Bleed Index is a 0 to 100 structural scoring system for VSL openings. It measures how fast an opening loses viewer attention. It names the exact leak causing the loss. One examiner running the same rubric across every opening turns a judgment call into a record. Read <a href="/bleed-index.html">how the score works</a> to see the seven leaks and the criteria behind every number. If one of those leaks looks familiar, you are in the right place.</p>
+
+  <h2>Named teardowns</h2>
+
+  <a class="cardlink" href="/gundry-vsl-teardown.html">
+    <div class="tcard">
+      <div class="name">Dr. Gundry's ProPlant VSL</div>
+      <div class="row">
+        <div class="big">63<span>/100</span></div>
+        <div class="meta"><span class="k">Band</span><span class="v" style="color:var(--orange)">Bleeding</span></div>
+        <div class="meta"><span class="k">Primary leak</span><span class="v">Authority Before Empathy</span></div>
+      </div>
+      <p class="hook">A nine-figure health VSL that leads with the doctor before it earns the right.</p>
+      <span class="go">Read the teardown &rarr;</span>
+    </div>
+  </a>
+
+  <a class="cardlink" href="/stansberry-end-of-america-teardown.html">
+    <div class="tcard">
+      <div class="name">Porter Stansberry's "End of America"</div>
+      <div class="row">
+        <div class="big">60<span>/100</span></div>
+        <div class="meta"><span class="k">Band</span><span class="v" style="color:var(--orange)">Bleeding</span></div>
+        <div class="meta"><span class="k">Primary leak</span><span class="v">Authority Before Empathy</span></div>
+      </div>
+      <p class="hook">One of the most studied financial VSLs ever written. Its opening still bleeds from the same structural leak.</p>
+      <span class="go">Read the teardown &rarr;</span>
+    </div>
+  </a>
+
+  <h2>The archive bench</h2>
+  <p>Ten more real openings from the diagnostic archive, names removed, each grouped by the structural leak it carries. Five of the seven leaks show up across the set.</p>
+
+  <div class="leakblock">
+    <p class="lname">Hook-Buyer Misalignment</p>
+    <p class="ldef">The opening targets the wrong moment in the viewer's belief state. They arrive skeptical; the hook assumes curiosity.</p>
+    <p class="entry">Coffee-based weight loss supplement <span>(health)</span></p>
+    <p class="entry">Backyard medicinal garden <span>(survival)</span></p>
+  </div>
+
+  <div class="leakblock">
+    <p class="lname">Relevance Gap</p>
+    <p class="ldef">The problem described floats above the viewer's felt experience. They recognize the category but do not feel named.</p>
+    <p class="entry">Gout-relief supplement <span>(health)</span></p>
+  </div>
+
+  <div class="leakblock">
+    <p class="lname">Authority Before Empathy</p>
+    <p class="ldef">Credibility fires before the viewer feels understood. They get a resume when they needed recognition.</p>
+    <p class="entry">Neuropathy relief supplement <span>(health)</span></p>
+    <p class="entry">Crisis-preparedness <span>(survival)</span></p>
+  </div>
+
+  <div class="leakblock">
+    <p class="lname">Proof Without Resolution</p>
+    <p class="ldef">Social proof arrives before the viewer has resolved whether this is their problem. The testimony lands as a claim.</p>
+    <p class="entry">Online-income <span>(biz-opp)</span></p>
+    <p class="entry">Wealth-manifestation <span>(biz-opp)</span></p>
+    <p class="entry">Joint health supplement <span>(health)</span></p>
+  </div>
+
+  <div class="leakblock">
+    <p class="lname">Logic Bridge Collapse</p>
+    <p class="ldef">The transition from problem to solution breaks. The viewer is asked to leap between what hurts and what fixes it.</p>
+    <p class="entry">Gut-cleanse supplement <span>(health)</span></p>
+    <p class="entry">Women's dating program <span>(relationships)</span></p>
+  </div>
+
+  <p class="missing">Two leaks, Momentum Drag and Identity Displacement, have no public teardown yet. They are on the map and coming.</p>
+  <p style="margin-top:1rem"><a href="/openings-collection.html">Read all ten archive teardowns in full &rarr;</a></p>
+
+  <div class="cta">
+    <p><strong>Find out where your opening bleeds.</strong></p>
+    <p>Run your own VSL opening through the same scoring system.</p>
+    <p>The Grader is free. It takes under three minutes. It returns a Bleed Index score with your primary leak named.</p>
+    <a class="btn" href="/grader.html?utm_source=teardown-library">Score My Opening Free</a>
+    <p style="margin-top:.6rem;font-size:.95rem">Want the rubric first? <a href="/bleed-index.html">How the score works: the seven leaks</a>.</p>
+    <p style="margin-top:.6rem;font-size:.95rem;color:rgba(255,255,255,0.62)">If you want a full teardown with a written diagnostic and repair notes, that is the paid work.</p>
+  </div>
+
+  <p class="sig">Zaah Fonderson<span>VSL Lead Diagnostician</span><span><a href="https://link.fixthatcopy.com/outreach-sig-rewrite">FixThatCopy.com</a></span></p>
+
+  <p class="foot">The Bleed Index is a professional structural scoring framework produced by FixThatCopy. Named teardowns cover proven, public VSLs and are offered for commentary, criticism, and education under fair use; FixThatCopy is not affiliated with or endorsed by any brand named here. Archive entries are drawn from the diagnostic archive with all names, brands, and products removed. Every score is a structural opinion about the opening only, and is not a statement about any offer's sales, revenue, forecasting, or results.</p>
+</main>
+</body>
+</html>

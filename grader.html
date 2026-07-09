@@ -69,6 +69,7 @@
   .foot { margin-top: 2.4rem; font-family: Arial, sans-serif;
           font-size: .78rem; color: rgba(255,255,255,0.50); text-align: center; }
 </style>
+  <script defer src="https://cloud.umami.is/script.js" data-website-id="e57f0b49-dcfe-44ba-b29e-dbcea45e1917"></script>
 </head>
 <body>
 <main>
@@ -162,6 +163,7 @@
       .then(function (r) { return r.json(); })
       .then(function (j) {
         if (j.ok) {
+          if (window.umami) umami.track('grader-submit');
           form.reset();
           counter.textContent = '0 words';
           var received = j.words_received

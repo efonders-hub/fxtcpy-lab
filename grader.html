@@ -102,9 +102,16 @@
     <input type="text" id="offer" name="offer" maxlength="120">
 
     <label for="vsl_text">Your VSL script: paste the whole thing</label>
-    <textarea id="vsl_text" name="vsl_text" required
-      placeholder="Paste your full script or transcript here. Words, not a video link. The grader finds and scores the opening automatically."></textarea>
+    <textarea id="vsl_text" name="vsl_text"
+      placeholder="Paste your full script or transcript here. The grader finds and scores the opening automatically."></textarea>
     <div class="counter" id="counter">0 words</div>
+
+    <!-- Microcopy: BNSN Strategist 2026-07-11, gated. -->
+    <label for="vsl_url">No script? Paste the link to the page where your VSL plays.</label>
+    <input type="text" id="vsl_url" name="vsl_url" maxlength="500" inputmode="url"
+      placeholder="https://... (we pull the words from the page for you)">
+    <p class="fine" style="margin-top:.4rem;">Either input works. If we cannot pull the
+    video from your link, we email you and ask for the script instead.</p>
 
     <input class="hp" type="text" name="website" tabindex="-1" aria-hidden="true">
 
@@ -114,7 +121,9 @@
     same day. No spam, no drip sequence you didn't ask for.</p>
   </form>
 
-  <div class="foot">FixThatCopy.com</div>
+  <div class="foot">FixThatCopy.com &middot;
+    <a href="privacy-policy.html" style="color:rgba(255,255,255,0.50);">Privacy</a> &middot;
+    <a href="terms-and-conditions.html" style="color:rgba(255,255,255,0.50);">Terms</a></div>
 </main>
 
 <script>
@@ -153,8 +162,13 @@
     msg.className = 'msg';
 
     var text = ta.value.trim();
-    if (text.length < 150) {
-      return show('err', 'Paste at least the first few hundred words so the read has enough to work with.');
+    var url = document.getElementById('vsl_url').value.trim();
+    var urlOk = /^https?:\/\/[^\s]+\.[^\s]+/.test(url);
+    if (url && !urlOk) {
+      return show('err', 'That link needs to start with http:// or https://. Check it and try again.');
+    }
+    if (!urlOk && text.length < 150) {
+      return show('err', 'Paste a few hundred words of your script, or drop in the link to the page where your VSL plays.');
     }
 
     btn.disabled = true;
@@ -166,13 +180,17 @@
           if (window.umami) umami.track('grader-submit');
           form.reset();
           counter.textContent = '0 words';
-          var received = j.words_received
-            ? 'Received: ' + Number(j.words_received).toLocaleString() + ' words. '
-            : 'Received. ';
-          var trunc = j.truncated
-            ? 'That includes your full opening, the part the grader scores. '
-            : '';
-          show('ok', received + trunc + 'Your bleed score is on its way to your inbox.');
+          if (j.mode === 'url') {
+            show('ok', 'Got it. We are pulling the words from your page now. Your Bleed Score follows by email, usually the same day.');
+          } else {
+            var received = j.words_received
+              ? 'Received: ' + Number(j.words_received).toLocaleString() + ' words. '
+              : 'Received. ';
+            var trunc = j.truncated
+              ? 'That includes your full opening, the part the grader scores. '
+              : '';
+            show('ok', received + trunc + 'Your bleed score is on its way to your inbox.');
+          }
         } else {
           show('err', j.error || 'Something went wrong. Try again.');
         }
@@ -188,6 +206,23 @@
     msg.textContent = text;
   }
 </script>
+
+<!--
+QUILL VOICE QA LOG
+Date: 2026-07-11
+Sections audited: title/meta, brand line, hero (h1, sub), form labels, placeholder text,
+JS status/error strings (submit handler, word counter, prefill label swap), footer.
+Edits made: 0. No hard-rule violations found.
+Checked and clear: no em/en dashes, no banned words, no "it's not X, it's Y" framing, no
+invented facts/numbers, identity consistent (Zaah/human diagnostician only, no Emile), free +
+human-read + "usually the same day" language matches the fact constraint exactly, no individual
+leak names, locked button label intact ("Get My Bleed Score"), no paragraph runs 5+ sentences as
+a wall, "No charge. No call." and "No spam, no drip sequence you didn't ask for." read as
+friction-removal reassurance (established site convention), not negative-inventory framing under
+rule 13, register matches client-facing sales page (C, restrained diagnostic voice).
+-->
+
+<!-- Quill voice QA: PASS. Cleared for ship. -->
 </body>
 </html>
 

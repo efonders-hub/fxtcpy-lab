@@ -460,14 +460,17 @@
 
         <div class="capture-box">
           <span class="capture-box-label">Send me the checklist</span>
-          <div class="form-field">
-            <input class="form-input" type="text" placeholder="First name" autocomplete="given-name">
-          </div>
-          <div class="form-field">
-            <input class="form-input" type="email" placeholder="Email address" autocomplete="email">
-          </div>
-          <button class="btn btn--orange btn--block" style="margin-top: 8px;">Send Me the Checklist</button>
-          <p class="form-disclaimer">No cost. No contracts. Your information stays private.</p>
+          <form class="checklist-optin" autocomplete="off">
+            <div class="form-field">
+              <input class="form-input" type="text" name="name" placeholder="First name" autocomplete="given-name" maxlength="60">
+            </div>
+            <div class="form-field">
+              <input class="form-input" type="email" name="email" placeholder="Email address" autocomplete="email" required>
+            </div>
+            <input type="text" name="website" tabindex="-1" aria-hidden="true" style="position:absolute;left:-9999px;">
+            <button type="submit" class="btn btn--orange btn--block" style="margin-top: 8px;">Send Me the Checklist</button>
+            <p class="form-disclaimer optin-msg">No cost. No contracts. Your information stays private.</p>
+          </form>
         </div>
       </div>
 
@@ -525,8 +528,7 @@
     <p>Read this before you touch the script again.</p>
     <!-- QUILL: removed "book" (inaccurate; the asset is a checklist, not a book - voice rule 4); cut weak "This is the one" opener -->
     <p>My 7-Point VSL Leak Checklist names the hidden structural leaks that quietly kill conversion rates. The same leaks drain funnel momentum and burn ad ROI day after day.</p>
-    <p>These are not surface edits. They are not trendy frameworks.</p>
-    <p>They are friction points buried inside the first 500 to 1,000 words of your script. They push viewers to exit before your pitch ever begins.</p>
+    <p>These are structural leaks buried inside the first 500 to 1,000 words of your script. They push viewers to exit before your pitch ever begins.</p>
     <p>The checklist is built for offer owners, media buyers, and direct-response marketers who already know their numbers.</p>
     <p>I am Zaah Fonderson, VSL Lead Diagnostician at FixThatCopy.com. Inside, you get the diagnostic framework I use to recover conversion. No new offer. No new traffic.</p>
     <!-- QUILL: split 24-word sentence into three; final two are fragments that land harder (sentence weight rule) -->
@@ -623,14 +625,17 @@
     <!-- QUILL: "Grab your copy" to "Get your copy" (weak verb fix); kept "your" since "my" would collide with Zaah's first-person possessive used throughout -->
 
     <div class="closing-form">
-      <div class="form-field">
-        <input class="form-input" type="text" placeholder="First name" autocomplete="given-name">
-      </div>
-      <div class="form-field">
-        <input class="form-input" type="email" placeholder="Email address" autocomplete="email">
-      </div>
-      <button class="btn btn--orange btn--block btn--xl" style="margin-top: 8px;">Send Me My Free Checklist</button>
-      <p class="form-disclaimer">No cost. Your information stays private.</p>
+      <form class="checklist-optin" autocomplete="off">
+        <div class="form-field">
+          <input class="form-input" type="text" name="name" placeholder="First name" autocomplete="given-name" maxlength="60">
+        </div>
+        <div class="form-field">
+          <input class="form-input" type="email" name="email" placeholder="Email address" autocomplete="email" required>
+        </div>
+        <input type="text" name="website" tabindex="-1" aria-hidden="true" style="position:absolute;left:-9999px;">
+        <button type="submit" class="btn btn--orange btn--block btn--xl" style="margin-top: 8px;">Send Me My Free Checklist</button>
+        <p class="form-disclaimer optin-msg">No cost. Your information stays private.</p>
+      </form>
     </div>
   </div>
 </section>
@@ -639,11 +644,13 @@
 <!-- FOOTER -->
 <footer>
   <div class="footer-links">
-    <a href="#">How does this work?</a>
+    <a href="index.html">How does this work?</a>
     <span class="footer-sep">&middot;</span>
-    <a href="#">Privacy Policy</a>
+    <a href="privacy-policy.html">Privacy Policy</a>
     <span class="footer-sep">&middot;</span>
-    <a href="#">Terms of Service</a>
+    <a href="terms-and-conditions.html">Terms of Service</a>
+    <span class="footer-sep">&middot;</span>
+    <a href="disclaimer.html">Disclaimer</a>
   </div>
   <div class="footer-id">
     <span>Zaah Fonderson</span>, VSL Lead Diagnostician &nbsp;&middot;&nbsp; FixThatCopy.com
@@ -651,6 +658,37 @@
   <div class="footer-copy">&copy; 2026 FixThatCopy.com. All rights reserved.</div>
 </footer>
 
+<script>
+  // Opt-in wiring 2026-07-11 (task 1.1.3): both forms post to the intake collector,
+  // which adds the subscriber to the MailerLite group "FXTCPY - Checklist Optins"
+  // server-side. Delivery = the group automation (task 1.2.4).
+  var COLLECTOR_URL = "https://script.google.com/macros/s/AKfycbwzAuz-b9tIbeqHpQGOMjUgxKqiC4DyOZtI9mFqrn222TafOcp9pgGTu5QLA8gSxogL/exec";
+  document.querySelectorAll('form.checklist-optin').forEach(function (f) {
+    f.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var btn = f.querySelector('button');
+      var note = f.querySelector('.optin-msg');
+      var data = new URLSearchParams(new FormData(f));
+      data.set('form', 'checklist');
+      btn.disabled = true;
+      fetch(COLLECTOR_URL, { method: 'POST', body: data })
+        .then(function (r) { return r.json(); })
+        .then(function (j) {
+          if (j.ok) {
+            if (window.umami) umami.track('checklist-submit');
+            f.reset();
+            note.textContent = 'The checklist is on its way to your inbox.';
+          } else {
+            note.textContent = j.error || 'Something went wrong. Try again.';
+          }
+        })
+        .catch(function () {
+          note.textContent = 'Could not reach the server. Try again in a minute.';
+        })
+        .finally(function () { btn.disabled = false; });
+    });
+  });
+</script>
 </body>
 
 <!--
@@ -666,5 +704,42 @@ Notes:
  - Leak names/descriptions clean: concrete, under 20 words, avoidance-framed. No edits needed.
  - No banned words, no "It's not X it's Y", no padding, no negative-inventory framing found.
 -->
+
+<!--
+QUILL VOICE QA LOG (re-audit)
+Date: 2026-07-11
+Scope: form microcopy changes only, plus a full re-check against today's brief (the seven leaks
+must not be named individually on these pages).
+Edits made: 1
+ - Body copy section: "These are not surface edits. They are not trendy frameworks. They are
+   friction points buried inside the first 500 to 1,000 words of your script..." -> merged into
+   one direct statement, "These are structural leaks buried inside the first 500 to 1,000 words
+   of your script. They push viewers to exit before your pitch ever begins." Hard rule 3:
+   two-negation-then-assertion variant of "it's not X, it's Y," also cut a repeated idea (rule 8).
+Form microcopy checked and clear: both opt-in forms (hero capture box, closing form), placeholder
+text, button labels ("Send Me the Checklist", "Send Me My Free Checklist" both match the locked
+list), disclaimer lines, and the JS success/error strings in the opt-in handler. No em/en dashes,
+no banned words, no invented facts.
+BLOCK finding, content-level, not fixable as a style edit:
+ - The hero "book cover" panel (all seven book-leak-row entries) and the entire #leaks grid
+   section ("Inside the Checklist, You Get...", all seven leak-item entries with names and
+   descriptions) name every one of the seven leaks individually and verbatim: Hook-Buyer
+   Misalignment, Relevance Gap, Authority Before Empathy, Proof Without Resolution, Logic Bridge
+   Collapse, Momentum Drag, Identity Displacement. Cross-checked against
+   FXTCPY/Positioning/leak-taxonomy-canonical.md: all seven names ARE the correct canonical names,
+   in the correct order, with no retired or invented names. This is not a leak-accuracy problem
+   (rule 15's naming-correctness half is clean). It is today's separate instruction that the
+   seven leaks must not be named individually on these pages at all, full stop. That instruction
+   is the entire structural spine of this page, both the visual "book cover" teaser and the full
+   benefit grid are built to reveal all seven names and descriptions before opt-in. Removing them
+   is not a word-level fix; it requires rewriting both sections into a teased, non-named version
+   (e.g., naming the count and category of each leak without the specific label, or moving the
+   named list behind the opt-in). That is new copy, which is Lex's or the Strategist's job, not a
+   QA edit. Returned to author rather than patched in place.
+-->
+
+<!-- Quill voice QA: BLOCK. Reason: hero book-cover panel and the full #leaks grid section name
+all seven individual leak names verbatim, violating the no-individual-leak-naming instruction for
+these pages. Content-level fix (page section rewrite), not a style fix. Returned to author. -->
 
 </html>

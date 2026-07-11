@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Free VSL Lead Recalibration for Offer Owners | FixThatCopy</title>
+<meta name="description" content="Your VSL used to convert. Now it doesn't. Zaah Fonderson finds the structural leak in your first 500 to 1,000 words and sends back a recalibrated version. Free.">
+<!-- REBUILD 2026-07-11 (task 1.1.4): current-brand rebuild of the old Lovable
+     "VSL Leak Fix" page. Copy base = the recovered original offer language
+     (FXTCPY/Website/Source-Mirror/vsl-rewrite-copy-source.md).
+     TODO-BNSN (1.1.5): full Benson pass before publish. Lane B page: NOT linked
+     from the homepage nav. Fed by the checklist PDF CTAs, the 30+ historical
+     Linkly links (via www->apex 301), and selected Phase 2 placements. -->
+<style>
+  :root {
+    --bg: #0D1F35; --card: #1A3855; --line: rgba(255,255,255,0.14);
+    --ink: #FFFFFF; --muted: rgba(255,255,255,0.78); --gold: #E8650A;
+    --gold-dark: #CC5500; --ok: #4fca87; --err: #E8192C;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 20px;
+    background: var(--bg); color: var(--ink);
+    line-height: 1.55; padding: 2.5rem 1rem 4rem;
+  }
+  main { max-width: 680px; margin: 0 auto; }
+  .brand {
+    font-family: Arial, Helvetica, sans-serif; font-size: .78rem;
+    letter-spacing: .28em; text-transform: uppercase; color: var(--gold);
+    margin-bottom: 2rem;
+  }
+  h1 { font-size: 2.1rem; line-height: 1.2; margin-bottom: .85rem; }
+  h2 { font-size: 1.45rem; line-height: 1.25; margin: 2.6rem 0 .8rem; }
+  p { margin-bottom: 1rem; }
+  .sub { font-size: 1.05rem; color: var(--muted); }
+  .kicker {
+    display: block; font-family: Arial, sans-serif; font-size: .75rem;
+    letter-spacing: .22em; text-transform: uppercase; color: var(--gold);
+    margin-bottom: .5rem;
+  }
+  ul.plain { list-style: none; margin: 0 0 1rem; }
+  ul.plain li { padding-left: 1.4rem; position: relative; margin-bottom: .55rem; }
+  ul.plain li::before { content: '\2192'; position: absolute; left: 0; color: var(--gold); }
+  .card {
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: 12px; padding: 1.75rem; margin-top: 1.2rem;
+  }
+  label { display: block; font-family: Arial, sans-serif; font-size: .82rem;
+          font-weight: bold; letter-spacing: .04em; color: var(--ink);
+          margin: 1.2rem 0 .4rem; }
+  label:first-of-type { margin-top: 0; }
+  input[type=email], input[type=text], textarea, select {
+    width: 100%; padding: .65rem .7rem; font-size: 1rem; font-family: inherit;
+    color: var(--ink); background: #0F2A45;
+    border: 1px solid var(--line); border-radius: 6px;
+  }
+  select option { background: #0F2A45; }
+  input:focus, textarea:focus, select:focus { outline: none; border-color: var(--gold); }
+  textarea { min-height: 200px; resize: vertical; }
+  .counter { font-family: Arial, sans-serif; font-size: .78rem;
+             color: var(--muted); margin-top: .4rem; }
+  .opts { display: grid; gap: .4rem; }
+  .opts label { font-weight: normal; margin: 0; display: flex;
+                gap: .55rem; align-items: baseline; font-family: Georgia, serif;
+                font-size: .95rem; letter-spacing: 0; color: var(--ink); }
+  .opts input { accent-color: var(--gold); }
+  .hp { position: absolute; left: -9999px; }
+  button {
+    margin-top: 1.5rem; width: 100%; padding: .9rem; font-size: 1.05rem;
+    font-family: Arial, sans-serif; font-weight: bold; letter-spacing: .03em;
+    color: #FFFFFF; background: var(--gold); border: 0; border-radius: 8px;
+    cursor: pointer;
+  }
+  button:hover { background: var(--gold-dark); }
+  button:disabled { opacity: .6; cursor: wait; }
+  button:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+  .msg { margin-top: 1rem; padding: .85rem; font-size: .95rem; display: none;
+         border-radius: 6px; }
+  .msg.ok { display: block; background: rgba(127,212,154,.09); color: var(--ok);
+            border: 1px solid rgba(127,212,154,.35); }
+  .msg.err { display: block; background: rgba(240,138,128,.09); color: var(--err);
+             border: 1px solid rgba(240,138,128,.35); }
+  .fine { font-size: .8rem; color: var(--muted); margin-top: 1.3rem;
+          font-family: Arial, sans-serif; }
+  .foot { margin-top: 2.4rem; font-family: Arial, sans-serif;
+          font-size: .78rem; color: rgba(255,255,255,0.50); text-align: center; }
+  .foot a { color: rgba(255,255,255,0.50); }
+</style>
+  <script defer src="https://cloud.umami.is/script.js" data-website-id="e57f0b49-dcfe-44ba-b29e-dbcea45e1917"></script>
+</head>
+<body>
+<main>
+  <div class="brand">FixThatCopy &middot; VSL Lead Diagnostics</div>
+
+  <span class="kicker">Your lead is the leak.</span>
+  <h1>Your VSL Used to Convert.</h1>
+  <p class="sub">Your offer is dialed in. Traffic is solid. Sales are slipping.
+  The damage sits in the first 500 to 1,000 words of your VSL. That is the
+  section viewers hit before they decide whether to stay. Everything
+  downstream depends on whether they do.</p>
+  <p class="sub">I find the structural leak in that section and send back a
+  recalibrated version. Free. You run it against your control. You only pay
+  when the lift is real.</p>
+  <p class="fine">For offer owners and media buyers spending real money on
+  traffic. No cost. No contracts. Results first.</p>
+
+  <h2>The Price Is Fine. The Offer Is Solid. So Why Isn't It Working?</h2>
+  <p>Viewers decide in the first 30 to 60 seconds. They decide whether the
+  person talking knows something they don't. If the lead doesn't answer
+  that question fast, they leave. The opener loses them before the offer
+  appears, not the offer itself.</p>
+  <p>The damage sits in the first 500 to 1,000 words. That section runs before
+  your proof, before your price, before your close. It is the only section
+  that decides whether any of those things get seen. Most testing never
+  touches it.</p>
+  <p>So the funnel keeps running. The spend keeps climbing. And the lead keeps
+  bleeding the same way it bled yesterday.</p>
+  <p>Another headline test will not reach it. The fix is structural. That is a
+  different problem, and it needs a different approach.</p>
+
+  <h2>Who Fixes It</h2>
+  <p>I'm Zaah Fonderson, founder of FixThatCopy.com. I don't rebuild full
+  scripts. I don't do strategy sessions.</p>
+  <p>I recalibrate one thing: the part of your VSL that decides whether people
+  stay. The lead controls everything downstream. Viewer retention, cost per
+  sale, affiliate EPC, scale ceiling. When that section is off, the rest of
+  the funnel is working against a leak it cannot see.</p>
+  <p>I find the structural break, rewrite that section with precision, and
+  give it back to you ready to test.</p>
+
+  <h2>Here Is How It Works</h2>
+  <ul class="plain">
+    <li>Send your VSL. Paste the script directly into the form, or drop a link to the page where the VSL plays. Either works.</li>
+    <li>I find the structural leak in your first 500 to 1,000 words and send back a recalibrated version of that section. Free. No invoice. No onboarding call.</li>
+    <li>Run it against your current opener. If my version lifts your numbers and you want to keep testing, I write three more lead variants for you to run. That is when payment enters. Not before.</li>
+    <li>If it doesn't win, you owe nothing. The recalibrated lead is yours to keep either way.</li>
+  </ul>
+  <p><strong>Win or walk. You only pay when the lift is real.</strong></p>
+  <p>Send your VSL below and let's see what the lead is costing you.</p>
+
+  <form id="rewriteForm" class="card" autocomplete="off">
+    <label for="email">Your email (the recalibrated lead is delivered there)</label>
+    <input type="email" id="email" name="email" required>
+
+    <label for="name">Your first name (optional)</label>
+    <input type="text" id="name" name="name" maxlength="60">
+
+    <label>Which is closest to you?</label>
+    <div class="opts">
+      <label><input type="radio" name="qualifier" value="Owner" required> I own this offer</label>
+      <label><input type="radio" name="qualifier" value="Media Buyer"> I buy or manage traffic for it</label>
+      <label><input type="radio" name="qualifier" value="Copywriter"> I wrote or will rewrite the VSL</label>
+      <label><input type="radio" name="qualifier" value="Portfolio"> I run several offers</label>
+      <label><input type="radio" name="qualifier" value="Agency"> Agency - I do this for clients</label>
+    </div>
+
+    <label for="ad_spend">Monthly ad spend on this offer</label>
+    <select id="ad_spend" name="ad_spend" required>
+      <option value="" selected disabled>Select one</option>
+      <option>Not running paid traffic yet</option>
+      <option>Less than $1k</option>
+      <option>$1k - $10k</option>
+      <option>$10k - $50k</option>
+      <option>$50k - $250k</option>
+      <option>$250k+</option>
+    </select>
+
+    <label for="offer">Product or offer name (optional)</label>
+    <input type="text" id="offer" name="offer" maxlength="120">
+
+    <label for="vsl_text">Your VSL script: paste the whole thing</label>
+    <textarea id="vsl_text" name="vsl_text"
+      placeholder="Paste your full script or transcript here. I find the opening myself."></textarea>
+    <div class="counter" id="counter">0 words</div>
+
+    <label for="vsl_url">No script handy? Paste the link to the page where your VSL plays</label>
+    <input type="text" id="vsl_url" name="vsl_url" maxlength="500" inputmode="url"
+      placeholder="https://... (we pull the words from the page for you)">
+
+    <input type="hidden" name="form" value="rewrite">
+    <input class="hp" type="text" name="website" tabindex="-1" aria-hidden="true">
+
+    <button id="submitBtn" type="submit">Get My Recalibrated Lead Now</button>
+    <div id="msg" class="msg" role="status"></div>
+    <p class="fine">Free recalibration. Human-written. No drip sequence, no spam.</p>
+  </form>
+
+  <div class="foot">
+    FixThatCopy.com &middot;
+    <a href="privacy-policy.html">Privacy</a> &middot;
+    <a href="terms-and-conditions.html">Terms</a> &middot;
+    <a href="disclaimer.html">Disclaimer</a>
+  </div>
+</main>
+
+<script>
+  var COLLECTOR_URL = "https://script.google.com/macros/s/AKfycbwzAuz-b9tIbeqHpQGOMjUgxKqiC4DyOZtI9mFqrn222TafOcp9pgGTu5QLA8gSxogL/exec";
+  var CHAR_LIMIT = 49000;
+
+  var form = document.getElementById('rewriteForm');
+  var btn = document.getElementById('submitBtn');
+  var msg = document.getElementById('msg');
+  var ta = document.getElementById('vsl_text');
+  var counter = document.getElementById('counter');
+
+  ta.addEventListener('input', function () {
+    var t = ta.value.trim();
+    var words = t ? t.split(/\s+/).length : 0;
+    var line = words + (words === 1 ? ' word' : ' words');
+    if (ta.value.length > CHAR_LIMIT) {
+      line += ' - past the ' + CHAR_LIMIT.toLocaleString() +
+        ' character limit; we keep the first part, which covers the opening';
+    }
+    counter.textContent = line;
+  });
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    msg.className = 'msg';
+
+    var text = ta.value.trim();
+    var url = document.getElementById('vsl_url').value.trim();
+    var urlOk = /^https?:\/\/[^\s]+\.[^\s]+/.test(url);
+    if (url && !urlOk) {
+      return show('err', 'That link needs to start with http:// or https://. Check it and try again.');
+    }
+    if (!urlOk && text.length < 150) {
+      return show('err', 'Paste a few hundred words of your script, or drop in the link to the page where your VSL plays.');
+    }
+
+    btn.disabled = true;
+    var data = new URLSearchParams(new FormData(form));
+    fetch(COLLECTOR_URL, { method: 'POST', body: data })
+      .then(function (r) { return r.json(); })
+      .then(function (j) {
+        if (j.ok) {
+          if (window.umami) umami.track('rewrite-submit');
+          form.reset();
+          counter.textContent = '0 words';
+          if (j.mode === 'url') {
+            show('ok', 'Got it. We are pulling the words from your page now. Your recalibrated lead will follow by email.');
+          } else {
+            show('ok', 'Got it. Your recalibrated lead is on its way to your inbox.');
+          }
+        } else {
+          show('err', j.error || 'Something went wrong. Try again.');
+        }
+      })
+      .catch(function () {
+        show('err', 'Could not reach the server. Try again in a minute.');
+      })
+      .finally(function () { btn.disabled = false; });
+  });
+
+  function show(kind, text) {
+    msg.className = 'msg ' + kind;
+    msg.textContent = text;
+  }
+</script>
+
+<!--
+QUILL VOICE QA LOG
+Date: 2026-07-11
+Sections audited: title/meta, brand line, hero (kicker, h1, sub, fine print), "The Price Is
+Fine" section, "Who Fixes It" section, "Here Is How It Works" list, form labels/placeholders,
+JS status/error strings, footer.
+Edits made: 5
+ - "The Price Is Fine" para 1: "Not whether to buy. Whether the person talking knows something
+   they don't. ... Not because your offer is weak. Because the opener lost them before the offer
+   appeared." -> rewritten to direct statements ("They decide whether the person talking knows
+   something they don't." / "The opener loses them before the offer appears, not the offer
+   itself."). Hard rule 3: two "it's not X, it's Y" variants in one paragraph.
+ - "The Price Is Fine" para 3 (6 sentences, one block): split into two paragraphs at "Another
+   headline test will not reach it." Rule 12: paragraph wall (5+ sentences with no break).
+ - "Who Fixes It" (8 sentences, one block): split into three paragraphs (intro / mechanism /
+   close). Rule 12: paragraph wall.
+Checked and clear: no em/en dashes, no banned words, no invented facts/numbers/testimonials,
+identity consistent (Zaah only, no Emile), no individual leak names, no dollar price named
+anywhere on the page (ad-spend dropdown values are a lead-qualifier question about the
+prospect's own traffic budget, not a service price - reviewed against the fact constraint and
+cleared), locked button label intact ("Get My Recalibrated Lead Now"), register matches
+client-facing sales page (C, restrained diagnostic voice), "win or walk" / "you only pay when
+the lift is real" language matches the free-diagnostic-then-paid-variants offer structure with
+no number attached.
+-->
+
+<!-- Quill voice QA: PASS. Cleared for ship. -->
+</body>
+</html>

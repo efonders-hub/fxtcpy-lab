@@ -178,19 +178,8 @@
       .then(function (j) {
         if (j.ok) {
           if (window.umami) umami.track('grader-submit');
-          form.reset();
-          counter.textContent = '0 words';
-          if (j.mode === 'url') {
-            show('ok', 'Got it. We are pulling the words from your page now. Your Bleed Score follows by email, usually the same day.');
-          } else {
-            var received = j.words_received
-              ? 'Received: ' + Number(j.words_received).toLocaleString() + ' words. '
-              : 'Received. ';
-            var trunc = j.truncated
-              ? 'That includes your full opening, the part the grader scores. '
-              : '';
-            show('ok', received + trunc + 'Your bleed score is on its way to your inbox.');
-          }
+          // Post-submit page (UAT 2026-07-11): confirmation + warm-up while they wait.
+          window.location.href = 'grader-thanks.html' + (j.mode === 'url' ? '?mode=url' : '');
         } else {
           show('err', j.error || 'Something went wrong. Try again.');
         }

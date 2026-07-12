@@ -676,15 +676,8 @@
         .then(function (j) {
           if (j.ok) {
             if (window.umami) umami.track('checklist-submit');
-            // Success state replaces the form entirely (copy: BNSN 2026-07-11, gated).
-            f.outerHTML =
-              '<div style="padding:20px 4px 6px;">' +
-              '<p style="font-size:1.35em;font-weight:bold;margin:0 0 12px;">Your checklist is on its way.</p>' +
-              '<p style="margin:0 0 12px;">The 7-Point VSL Leak Checklist is headed to your inbox right now, sent from zaah@fixthatcopy.com.</p>' +
-              '<p style="margin:0 0 12px;">If it hasn\'t landed in a couple of minutes, check your spam or promotions tab and move it to your inbox so every future send comes through clean.</p>' +
-              '<p style="margin:0;">While you wait, find out exactly where your VSL is bleeding money: ' +
-              '<a href="grader.html" style="color:#E8650A;font-weight:bold;">Get your Bleed Score</a></p>' +
-              '</div>';
+            // Post-submit page (UAT 2026-07-11): confirmation + use-it-today priming.
+            window.location.href = 'checklist-thanks.html';
           } else {
             note.textContent = j.error || 'Something went wrong. Try again.';
           }

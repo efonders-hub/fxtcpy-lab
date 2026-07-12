@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Received. Your Read Is Coming. | FixThatCopy</title>
+<meta name="robots" content="noindex, follow">
+<!-- Post-submit page (UAT, 2026-07-11). Copy: BNSN Strategist, gated.
+     grader.html redirects here on success; ?mode=url adds the transcription line. -->
+<style>
+  :root {
+    --bg: #0D1F35; --card: #1A3855; --line: rgba(255,255,255,0.14);
+    --ink: #FFFFFF; --muted: rgba(255,255,255,0.78); --gold: #E8650A;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, 'Times New Roman', serif; font-size: 20px;
+    background: var(--bg); color: var(--ink); line-height: 1.55;
+    padding: 2.5rem 1rem 4rem; }
+  main { max-width: 640px; margin: 0 auto; }
+  .brand { font-family: Arial, Helvetica, sans-serif; font-size: .78rem;
+    letter-spacing: .28em; text-transform: uppercase; color: var(--gold);
+    margin-bottom: 2rem; }
+  .kicker { display: block; font-family: Arial, sans-serif; font-size: .75rem;
+    letter-spacing: .22em; text-transform: uppercase; color: var(--gold);
+    margin-bottom: .5rem; }
+  h1 { font-size: 1.9rem; line-height: 1.2; margin-bottom: .85rem; }
+  h2 { font-size: 1.3rem; line-height: 1.25; margin: 2.2rem 0 .7rem; }
+  p { margin-bottom: 1rem; }
+  ul.plain { list-style: none; margin: 0 0 1rem; }
+  ul.plain li { padding-left: 1.4rem; position: relative; margin-bottom: .55rem; }
+  ul.plain li::before { content: '\2192'; position: absolute; left: 0; color: var(--gold); }
+  a { color: var(--gold); }
+  .btns { display: flex; gap: .8rem; flex-wrap: wrap; margin: 1.2rem 0; }
+  .btn { display: inline-block; padding: .8rem 1.4rem; font-family: Arial, sans-serif;
+    font-weight: bold; font-size: .95rem; border-radius: 8px; text-decoration: none; }
+  .btn-solid { background: var(--gold); color: #fff; }
+  .btn-line { border: 1px solid var(--line); color: var(--ink); }
+  .ps { font-size: .9rem; color: var(--muted); margin-top: 2rem;
+    font-family: Arial, sans-serif; }
+  .foot { margin-top: 2.4rem; font-family: Arial, sans-serif; font-size: .78rem;
+    color: rgba(255,255,255,0.50); text-align: center; }
+  .foot a { color: rgba(255,255,255,0.50); }
+</style>
+  <script defer src="https://cloud.umami.is/script.js" data-website-id="e57f0b49-dcfe-44ba-b29e-dbcea45e1917"></script>
+</head>
+<body>
+<main>
+  <div class="brand">FixThatCopy &middot; VSL Lead Diagnostics</div>
+
+  <span class="kicker">Your VSL is in the queue.</span>
+  <h1>Received. A human diagnostician is reading your script now.</h1>
+  <p id="urlmode" style="display:none;">You sent a link, so we pull the words from
+  your page first. Then the read runs.</p>
+  <p>Your submission goes to a single reader. They work through it against
+  the 7-Point framework by hand. The report lands in your inbox from
+  zaah@fixthatcopy.com, usually the same day. If it drops into spam or promotions,
+  move it to your inbox so the email gets through clean.</p>
+
+  <h2>Here is what your report contains.</h2>
+  <ul class="plain">
+    <li>A Bleed Score from 0 to 100 that puts a number on how much your opening is costing you.</li>
+    <li>The specific structural checkpoint where your opening loses believers before the pitch begins.</li>
+    <li>A read precise enough to hand a copywriter as a brief.</li>
+  </ul>
+
+  <h2>While you wait, see the scoring method applied to VSLs that ran at scale.</h2>
+  <p>The scoring framework is public. It is called the Bleed Index. The
+  methodology page lays out every checkpoint it measures against.</p>
+
+  <p>The published teardowns apply the framework to real VSLs that drove real
+  traffic. That list includes Dr. Gundry's ProPlant Complete, Stansberry's End
+  of America, and His Secret Obsession. Read one teardown before your report
+  arrives. The language in your diagnosis will feel familiar from the first
+  line.</p>
+
+  <div class="btns">
+    <a class="btn btn-solid" href="vsl-teardowns.html">Read the teardowns</a>
+    <a class="btn btn-line" href="bleed-index.html">See how the Bleed Index works</a>
+  </div>
+
+  <p class="ps">P.S. The read is human, so any reply to the report email goes
+  straight to Zaah.</p>
+
+  <div class="foot"><a href="index.html">FixThatCopy.com</a> &middot;
+    <a href="privacy-policy.html">Privacy</a> &middot;
+    <a href="terms-and-conditions.html">Terms</a></div>
+</main>
+<script>
+  if (new URLSearchParams(location.search).get('mode') === 'url') {
+    document.getElementById('urlmode').style.display = 'block';
+  }
+</script>
+</body>
+</html>
